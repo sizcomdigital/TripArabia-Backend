@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <%-include('../layouts/admin/favicon.ejs')%>
+
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+
+        <div id="pagee" class="clearfix">
+
+            <%-include('../layouts/admin/sideheader.ejs')%>
+            
+                <!-- End Main Header -->
+                <main id="main">
+                    <section class="profile-dashboard">
+                        <div class="inner-header mb-40">
+                            <h3 class="title">Add Tour</h3>
+                            <p class="des">There are many variations of passages of Lorem Ipsum</p>
+                        </div>
+                        <form id="form-add-tour" class="form-add-tour" enctype="multipart/form-data">
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">1. information</h4>
+                                <div class="grid-input-2 mb-45">
+                                    <div class="input-wrap">
+                                        <label>Enter your tittle</label>
+                                        <input type="text" placeholder="VIP evening desert safari" name="tourName">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <label>Select your Category</label>
+                                        <div class="nice-select" tabindex="0" id="categoryDropdown">
+                                            <span class="current">Select Category</span>
+                                            <ul class="list">
+                                                <li data-value="" class="option selected focus">Select Category</li>
+                                                <% categories.forEach(category => { %>
+                                                    <li data-value="<%= category._id %>" class="option"><%= category.name %></li>
+                                                <% }) %>
+                                            </ul>
+                                        </div>
+                                        <!-- Hidden input to store the selected category ID -->
+                                      <input type="hidden" id="selectedCategory" name="category" value="">
+                                    </div>
+                                </div>
+                                <div class="input-wrap mb-45">
+                                    <label>Location Name</label>
+                                    <input type="text" placeholder="Dubai Desert" name="locationName">
+                                </div>
+                                <div class="input-wrap mb-45">
+                                    <label>Description</label>
+                                    <textarea name="description" rows="12" cols="50"
+                                        placeholder="Write content"></textarea>
+                                </div>
+
+                                <div class="input-wrap">
+             <label>Upload Photo</label>
+                 <div class="upload-image-add-car mb-30">
+        <!-- First Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input name="images" type="file" id="photoLoad" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad')">
+            </label>
+            <img id="previewPhotoLoad" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Second Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad1" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images"  id="photoLoad1" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad1')">
+            </label>
+            <img id="previewPhotoLoad1" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Third Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad2" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images" id="photoLoad2" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad2')">
+            </label>
+            <img id="previewPhotoLoad2" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Fourth Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad3" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images" id="photoLoad3" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad3')">
+            </label>
+            <img id="previewPhotoLoad3" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+    </div>
+    <p><span class="text-main">*</span>Supported <span class="text-main">Png</span> & Jpg Not more than 2 Mb</p>
+                                   </div>
+
+                            </div>
+                          
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">2.Timing</h4>
+                                <div class="grid-input-2 mb-45">
+                                    <!-- From -->
+                                    <div class="input-wrap">
+                                        <label for="tripFrom">From</label>
+                                        <input type="time" id="tripFrom" placeholder="Select Time" name="tripTime[from]">
+                                    </div>
+                                
+                                    <!-- To -->
+                                    <div class="input-wrap">
+                                        <label for="tripTo">To</label>
+                                        <input type="time" id="tripTo" placeholder="Select Time" name="tripTime[to]">
+                                    </div>
+                                
+                                    <!-- Hours of Trip -->
+                                    <div class="input-wrap">
+                                        <label for="tripDuration">Hours of Trip</label>
+                                        <input type="number" id="tripDuration" placeholder="Enter Hours" min="0" step="1" name="hoursOfTrip">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">3. What’s Include?</h4>
+                        
+                                <!-- Include Feature Section -->
+                                <div class="row mb-60">
+                                    <div class="col-lg-12">
+                                        <div class="input-wrap">
+                                            <label for="includeFeatureInput">Include Feature</label>
+                                            <input type="text" id="includeFeatureInput" class="form-control" placeholder="Type a feature (e.g., Laundry Service)">
+                                        </div>
+                                        <button type="button" id="addIncludeFeatureBtn" class="btn btn-primary mt-3" style="background-color: #f29200;">Add Feature</button>
+                                    </div>
+                                    <div class="col-lg-12 mt-4" id="includeFeatureList" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
+                                        <!-- Dynamically added include features will appear here -->
+                                    </div>
+                                </div>
+                        
+                                <!-- Exclude Feature Section -->
+                                <div class="row mb-60">
+                                    <div class="col-lg-12">
+                                        <div class="input-wrap">
+                                            <label for="excludeFeatureInput">Excluded Feature</label>
+                                            <input type="text" id="excludeFeatureInput" class="form-control" placeholder="Type a feature (e.g., Swimming Pool)">
+                                        </div>
+                                        <button type="button" id="addExcludeFeatureBtn" class="btn btn-primary mt-3" style="background-color: #f29200;">Add Feature</button>
+                                    </div>
+                                    <div class="col-lg-12 mt-4" id="excludeFeatureList" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
+                                        <!-- Dynamically added excluded features will appear here -->
+                                    </div>
+                                </div>
+                        
+                                <!-- Tour Highlights Section -->
+                                <div class="row mb-60">
+                                    <div class="col-lg-12">
+                                        <div class="input-wrap">
+                                            <label for="highlightFeatureInput">Tour Highlights</label>
+                                            <input type="text" id="highlightFeatureInput" class="form-control" placeholder="Type a highlight (e.g., Scenic Views)">
+                                        </div>
+                                        <button type="button" id="addHighlightFeatureBtn" class="btn btn-primary mt-3" style="background-color: #f29200;">Add Feature</button>
+                                    </div>
+                                    <div class="col-lg-12 mt-4" id="highlightFeatureList" style="display: inline-flex; gap: 10px; flex-wrap: wrap;">
+                                        <!-- Dynamically added tour highlights will appear here -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">4. Pricing</h4>
+
+                                <div class="grid-input-2 mb-45">
+                                    <div class="input-wrap">
+                                        <label>Actual Price</label>
+                                        <input type="text" placeholder="AED199" name="actualPrice">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <label>Offer Price</label>
+                                        <input type="text" placeholder="AED199" name="offerPrice">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                            <div class="input-wrap ">
+                                <button type="submit" class="button-add"> Save changes </button>
+                            </div>
+                        </form>
+                    </section>
+                </main>
+
+                <%-include('../layouts/admin/footer.ejs')%>
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+   
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            ...
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+    <script>
+        function previewImage(event, previewId) {
+            const file = event.target.files[0];
+            const previewElement = document.getElementById(previewId);
+    
+            if (file) {
+                const reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    previewElement.src = e.target.result;
+                    previewElement.style.display = "block";
+                };
+    
+                reader.readAsDataURL(file);
+            } else {
+                previewElement.src = "#";
+                previewElement.style.display = "none";
+            }
+        }
+    </script>
+
+<script>
+// Generic function to add features
+function addFeature(inputId, listId, inputClass) {
+    const featureInput = document.getElementById(inputId);
+    const featureList = document.getElementById(listId);
+    const featureText = featureInput.value.trim();
+
+    if (featureText !== "") {
+        const featureItem = document.createElement("div");
+        featureItem.className = "feature-item";
+
+        featureItem.innerHTML = `
+            <div style="display: inline-flex; align-items: center; gap: 5px;">
+                <input type="text" class="form-control ${inputClass}" value="${featureText}" readonly style="width: auto;">
+                <button type="button" class="btn btn-danger btn-sm remove-feature-btn">Remove</button>
+            </div>
+        `;
+
+        featureList.appendChild(featureItem);
+
+        // Clear the input field
+        featureInput.value = "";
+
+        // Remove feature functionality
+        featureItem.querySelector(".remove-feature-btn").addEventListener("click", function () {
+            featureItem.remove();
+        });
+    } else {
+        alert("Please enter a feature before adding.");
+    }
+}
+
+// Event listeners for the Add buttons
+document.getElementById("addIncludeFeatureBtn").addEventListener("click", () => addFeature("includeFeatureInput", "includeFeatureList", "include-input"));
+document.getElementById("addExcludeFeatureBtn").addEventListener("click", () => addFeature("excludeFeatureInput", "excludeFeatureList", "exclude-input"));
+document.getElementById("addHighlightFeatureBtn").addEventListener("click", () => addFeature("highlightFeatureInput", "highlightFeatureList", "highlight-input"));
+
+</script>
+
+<script>
+    // Update hidden category value when a category is selected from the dropdown
+    document.querySelectorAll('#categoryDropdown .option').forEach(option => {
+        option.addEventListener('click', function() {
+            const categoryId = this.getAttribute('data-value');
+            
+            // Update the hidden input with the selected category ID
+            document.getElementById('selectedCategory').value = categoryId;
+            
+            // Update the displayed selected category text
+            document.querySelector('#categoryDropdown .current').textContent = this.textContent;
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    
+    document.getElementById('form-add-tour').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        // Gather all features
+        const includedFeatures = Array.from(document.querySelectorAll(".include-input")).map(input => input.value);
+        const excludedFeatures = Array.from(document.querySelectorAll(".exclude-input")).map(input => input.value);
+        const tourHighlights = Array.from(document.querySelectorAll(".highlight-input")).map(input => input.value);
+
+        // Get the form and its data
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Append the dynamic features as JSON strings
+        formData.append('included', JSON.stringify(includedFeatures));
+        formData.append('excluded', JSON.stringify(excludedFeatures));
+        formData.append('tourHighlights', JSON.stringify(tourHighlights));
+
+        try {
+            // Submit the form data
+            const response = await fetch('/admin/tours', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // Success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tour added successfully!',
+                    text: result.message,
+                }).then(() => {
+                    form.reset()
+                    // Optionally reset the form or redirect to a different page
+                    window.location.href = "/admin/alltour";  // Redirect to the tours list
+                });
+                document.querySelectorAll('.image-preview').forEach((img) => (img.style.display = 'none'));
+
+                // Clear dynamic feature lists
+                document.getElementById('includeFeatureList').innerHTML = '';
+                document.getElementById('excludeFeatureList').innerHTML = '';
+                document.getElementById('highlightFeatureList').innerHTML = '';
+            } else {
+                // Error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error adding tour!',
+                    text: result.message || 'An error occurred.',
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Something went wrong while adding the tour.',
+            });
+        }
+    });
+</script>
+
+
+
+</body>
+
+</html>

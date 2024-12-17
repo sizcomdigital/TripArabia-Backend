@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <%-include('../layouts/admin/favicon.ejs')%>
+
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+
+        <div id="pagee" class="clearfix">
+
+            <%-include('../layouts/admin/sideheader.ejs')%>
+            
+                <!-- End Main Header -->
+                <main id="main">
+                    <section class="profile-dashboard">
+                        <div class="inner-header mb-40">
+                            <h3 class="title">Add Blog</h3>
+                            <p class="des">There are many variations of passages of Lorem Ipsum</p>
+                        </div>
+                        <form id="form-add-blog" class="form-add-tour" enctype="multipart/form-data">
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">1. information</h4>
+                               
+                                <div class="input-wrap mb-45">
+                                    <label>Blog Name</label>
+                                    <input type="text" placeholder="Dubai Desert" name="blogName" value="<%= blog.blogName%>">
+                                </div>
+                                <div class="input-wrap mb-45">
+                                    <label>Mini Description</label>
+                                    <textarea name="miniDescription" rows="12" cols="50"
+                                        placeholder="Write content"><%= blog.miniDescription%></textarea>
+                                </div>
+                                <div class="input-wrap mb-45">
+                                    <label>Description</label>
+                                    <textarea name="description" rows="12" cols="50" class="textarea-tinymce"
+                                        placeholder="Write content"><%= blog.description%></textarea>
+
+
+                                </div>
+
+                                <div class="input-wrap">
+             <label>Upload Photo</label>
+             <% blog.images.forEach((image, index) => { %>
+                <div class="upload-image">
+                    <img src="<%= image %>" alt="Existing Image <%= index + 1 %>" style="height: 120px; width: 120px; margin-bottom: 5px;">
+                    
+                    <!-- Delete Button with a data attribute to store the image URL -->
+                    <button type="button" class="btn btn-danger btn-sm delete-image" data-image="<%= image %>" data-blog="<%= blog._id %>">Delete</button>
+                </div>
+            <% }) %>
+
+
+
+
+
+                 <div class="upload-image-add-car mb-30">
+        <!-- First Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input name="images" type="file" id="photoLoad" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad')">
+            </label>
+            <img id="previewPhotoLoad" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Second Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad1" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images"  id="photoLoad1" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad1')">
+            </label>
+            <img id="previewPhotoLoad1" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Third Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad2" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images" id="photoLoad2" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad2')">
+            </label>
+            <img id="previewPhotoLoad2" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Fourth Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad3" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images" id="photoLoad3" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad3')">
+            </label>
+            <img id="previewPhotoLoad3" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+    </div>
+    <p><span class="text-main">*</span>Supported <span class="text-main">Png</span> & Jpg Not more than 3 Mb</p>
+                                   </div>
+
+                            </div>
+                          
+                         
+                          
+                         
+                           
+                            <div class="input-wrap ">
+                                <button type="submit" class="button-add"> Save changes </button>
+                            </div>
+                        </form>
+                    </section>
+                </main>
+
+                <%-include('../layouts/admin/footer.ejs')%>
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+   
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            ...
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+    <script>
+        function previewImage(event, previewId) {
+            const file = event.target.files[0];
+            const previewElement = document.getElementById(previewId);
+    
+            if (file) {
+                const reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    previewElement.src = e.target.result;
+                    previewElement.style.display = "block";
+                };
+    
+                reader.readAsDataURL(file);
+            } else {
+                previewElement.src = "#";
+                previewElement.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.getElementById('form-add-blog').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+        tinymce.triggerSave(); // Ensure TinyMCE updates the textarea
+
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Display a loader to indicate processing
+        const loader = document.createElement('div');
+        loader.id = 'loading-overlay';
+        loader.style.position = 'fixed';
+        loader.style.top = '0';
+        loader.style.left = '0';
+        loader.style.width = '100%';
+        loader.style.height = '100%';
+        loader.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        loader.style.display = 'flex';
+        loader.style.justifyContent = 'center';
+        loader.style.alignItems = 'center';
+        loader.style.zIndex = '9999';
+        loader.innerHTML = '<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>';
+        document.body.appendChild(loader);
+
+        try {
+            // Make the API call to update the blog
+            const response = await fetch(`/admin/blogs/<%= blog._id %>`, {
+                method: 'PUT', // HTTP method
+                body: formData, // Form data containing file and text inputs
+            });
+
+            const result = await response.json();
+
+            // Remove the loader
+            document.body.removeChild(loader);
+
+            if (response.ok) {
+                // Show success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Blog updated successfully!',
+                    text: result.message,
+                }).then(() => {
+                    // Optionally reset the form or redirect to a different page
+                    window.location.href = "/admin/allblog";  // Redirect to the tours list
+                });
+                // Clear image previews
+                document.querySelectorAll('.image-preview').forEach((img) => {
+                    img.style.display = 'none';
+                    img.src = '#';
+                });
+
+                // Optionally redirect the user
+                // window.location.href = '/admin/blogs';
+            } else {
+                // Show error message if response is not ok
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error updating blog!',
+                    text: result.message || 'An error occurred during the update.',
+                });
+            }
+        } catch (error) {
+            // Remove the loader in case of error
+            document.body.removeChild(loader);
+
+            // Show a generic error message
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Something went wrong while updating the blog.',
+            });
+        }
+    });
+</script>
+<script>
+    // Add event listener to the delete buttons
+document.querySelectorAll('.delete-image').forEach(button => {
+  button.addEventListener('click', async (e) => {
+    const imageUrlToDelete = e.target.getAttribute('data-image'); // Get the image URL from the data attribute
+    const blogId = e.target.getAttribute('data-blog'); // Get the tour ID from the data attribute
+
+    try {
+      const response = await fetch(`/admin/blogimg/${blogId}`, {
+        method: 'DELETE', // Use DELETE method for deletion
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          imageUrl: imageUrlToDelete,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message); // Show success message
+        // Optionally, remove the image from the DOM
+        e.target.closest('.upload-image').remove();
+      } else {
+        alert(data.message); // Show error message
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error deleting image');
+    }
+  });
+});
+
+</script>
+
+
+
+
+</body>
+
+</html>

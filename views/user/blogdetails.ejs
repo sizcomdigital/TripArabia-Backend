@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="app/css/app.css">
+    <link rel="stylesheet" href="app/css/jquery.fancybox.min.css">
+
+<!-- Favicon and Touch Icons  -->
+<link rel="shortcut icon" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+
+<style>
+    /* General styling for the description */
+.blog-description {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Styling for strong text (bold) */
+.blog-description strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Style for the unordered list (ul) */
+.blog-description ul {
+    margin-top: 20px;
+    margin-left: 20px;
+    list-style-type: disc;
+    font-size: 16px;
+}
+
+/* Style for list items (li) */
+.blog-description ul li {
+    margin-bottom: 10px;
+}
+
+/* Add padding and spacing between paragraphs */
+.blog-description p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Style for links, in case there are any links in the description */
+.blog-description a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.blog-description a:hover {
+    text-decoration: underline;
+}
+
+/* Formatting for headers (h1, h2, h3, etc.) in the description */
+.blog-description h2, .blog-description h3 {
+    color: #333;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Optional: Add spacing after blockquote if there are any */
+.blog-description blockquote {
+    font-style: italic;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-left: 5px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+/* Optional: If the blog has images inside the description */
+.blog-description img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+}
+
+
+</style>
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+        <div id="pagee" class="clearfix">
+
+            <%-include('../layouts/user/header.ejs')%>
+
+
+            <main id="main">
+                
+
+                <section class="breadcumb-section">
+                    <div class="tf-container">
+                        <div class="row">
+                            <div class="col-lg-12 center z-index1">
+                                <h1 class="title">Blog Details</h1>
+                                <ul class="breadcumb-list flex-five">
+                                    <li><a href="/">Home</a></li>
+                                    <li><span>Blog Details</span></li>
+                                </ul>
+                                <img class="bcrumb-ab" src="./assets/images/page/mask-bcrumb.png" alt="">
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="our-blog pd-main">
+                    <div class="tf-container">
+                        <div class="row">
+                            <div class="col-lg-8 col-12">
+                                <article class="side-blog side-blog-single">
+                                    <div class="image">
+                                        <img src="<%=blog.images[0]%>" alt="">
+                                    </div>
+
+                                    <div class="top-detail-info">
+                                        <ul class="flex-three">
+                                            <li>
+                                                <i class="icon-4"></i>
+                                                <span><%= new Date(blog.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }) %></span>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <h2 class="entry-title">
+                                        <%- blog.blogName %>
+                                    </h2>
+                                    <div class="blog-description">
+                                        <%- blog.description %>
+                                    </div>
+
+                                </article>
+
+                                <div class="side-blog-single-content">
+                                   
+                                    <div class="row mb-40">
+                                        <div class="col-6">
+                                            <img src="<%=blog.images[1]%>" alt="">
+                                        </div>
+                                        <div class="col-6">
+                                            <img src="<%=blog.images[2]%>" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p class="des">
+                                                <%- blog.miniDescription %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="side-bar-right">
+                                    <div class="sidebar-widget">
+                                        <h4 class="block-heading">Recent Blogs</h4>
+                                        <div class="recent-post-list">
+                                            <div class="blogs-container">
+                                                <% blogs.forEach(blog => { %>
+                                                    <div class="list-recent flex-three">
+                                                        <a href="/blogDetails?blogId=<%= blog._id %>" class="recent-image">
+                                                            <img src="<%=blog.images[0]%>" alt="Image">
+                                                        </a>
+                                                        <div class="recent-info">
+                                                            <div class="date">
+                                                                <span><%= new Date(blog.createdAt).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }) %></span>
+                                                            </div>
+                                                            <h4 class="title">
+                                                                <%= blog.blogName %>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                <% }); %>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                
+
+                <%-include('../layouts/user/subfooter.ejs')%>
+
+
+            </main>
+
+            <%-include('../layouts/user/footer.ejs')%>
+
+
+
+            <!-- Bottom -->
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="logo-canvas">
+                <img src="./assets/images/logo.png" alt="image">
+            </div>
+            <p class="des">The world’s first and largest digital market
+                for crypto collectibles and non-fungible
+            </p>
+            <ul class="canvas-info">
+                <li class="flex-three">
+                    <i class="icon-noun-mail-5780740-1"></i>
+                    <p>Info@webmail.com</p>
+                </li>
+                <li class="flex-three">
+                    <i class="icon-Group-9"></i>
+                    <p>684 555-0102 490</p>
+                </li>
+                <li class="flex-three">
+                    <i class="icon-Layer-19"></i>
+                    <p>6391 Elgin St. Celina, NYC 10299</p>
+                </li>
+            </ul>
+            <ul class="social flex-three">
+                <li>
+                    <a href="#">
+                        <i class="icon-icon-2"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-8"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-6"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="app/js/jquery.min.js"></script>
+    <script src="app/js/jquery.nice-select.min.js"></script>
+    <script src="app/js/bootstrap.min.js"></script>
+    <script src="app/js/swiper-bundle.min.js"></script>
+    <script src="app/js/swiper.js"></script>
+    <script src="app/js/plugin.js"></script>
+    <script src="app/js/jquery.fancybox.js"></script>
+    <script src="app/js/shortcodes.js"></script>
+    <script src="app/js/main.js"></script>
+
+</body>
+
+</html>

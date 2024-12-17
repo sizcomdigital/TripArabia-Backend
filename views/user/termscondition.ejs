@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="app/css/app.css">
+    <link rel="stylesheet" href="app/css/jquery.fancybox.min.css">
+
+   
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon-precomposed" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+
+
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+        <div id="pagee" class="clearfix">
+
+            <%-include('../layouts/user/header.ejs')%>
+
+            <main id="main">
+                <section class="breadcumb-section" style="background-image: url('./assets/images/page/termscondition.png'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 137px 0px 135px 0px">
+                    <div class="tf-container">
+                        <div class="row">
+                            <div class="col-lg-12 center z-index1">
+                                <h1 class="title">Terms & Condition</h1>
+                                <ul class="breadcumb-list flex-five">
+                                    <li><a href="/">Home</a></li>
+                                    <li><span>Terms & Condition</span></li>
+                                </ul>
+                                <img class="bcrumb-ab" src="./assets/images/page/mask-bcrumb.png" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="terms-condition">
+                    <div class="tf-container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="d-flex align-items-start tab-terms-condition">
+                                    <div class="nav flex-column nav-pills bg-1" id="v-pills-tab" role="tablist"
+                                        aria-orientation="vertical">
+                                        <button class="nav-link active" id="v-pills-bookings-prices-tab"
+                                            data-bs-toggle="pill" data-bs-target="#v-pills-bookings-prices"
+                                            type="button" role="tab" aria-controls="v-pills-bookings-prices"
+                                            aria-selected="true">1. Introduction
+                                        </button>
+                                        <button class="nav-link" id="v-pills-payment-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-payment" type="button" role="tab"
+                                            aria-controls="v-pills-payment" aria-selected="false">2. Bookings & Payments
+                                        </button>
+                                        <button class="nav-link" id="v-pills-changes-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-changes" type="button" role="tab"
+                                            aria-controls="v-pills-changes" aria-selected="false">3. Cancellations & Refunds</button>
+                                        <button class="nav-link" id="v-pills-cancellations-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-cancellations" type="button" role="tab"
+                                            aria-controls="v-pills-cancellations"
+                                            aria-selected="false">4. Travel Insurance
+                                        </button>
+                                        <button class="nav-link" id="v-pills-services-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-services" type="button" role="tab"
+                                            aria-controls="v-pills-services" aria-selected="false">5. Visas, Passports & Documentation
+                                        </button>
+
+                                        <button class="nav-link" id="v-pills-trip-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-trip" type="button" role="tab"
+                                            aria-controls="v-pills-trip" aria-selected="false">6. Liability & Risks
+                                        </button>
+
+                                        <button class="nav-link" id="v-pills-participation-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-participation" type="button" role="tab"
+                                            aria-controls="v-pills-participation"
+                                            aria-selected="false">7. Baggage & Personal Belongings
+                                        </button>
+
+                                        <button class="nav-link" id="v-pills-passports-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-passports" type="button" role="tab"
+                                            aria-controls="v-pills-passports" aria-selected="false">8. Conduct & Behavior
+                                    </button>
+
+                                    <button class="nav-link" id="v-pills-force-majeure-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-force-majeure" type="button" role="tab"
+                                    aria-controls="v-pills-force-majeure" aria-selected="false">9. Force Majeure
+                            </button>
+
+                                        <button class="nav-link" id="v-pills-miscellanea-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-miscellanea" type="button" role="tab"
+                                            aria-controls="v-pills-miscellanea"
+                                            aria-selected="false">10. Amendments to Itinerary
+                                        </button>
+                                        <button class="nav-link" id="v-pills-governing-law-tab" data-bs-toggle="pill"
+        data-bs-target="#v-pills-governing-law" type="button" role="tab"
+        aria-controls="v-pills-governing-law" aria-selected="false">11. Governing Law & Dispute Resolution
+</button>
+<button class="nav-link" id="v-pills-data-privacy-tab" data-bs-toggle="pill"
+        data-bs-target="#v-pills-data-privacy" type="button" role="tab"
+        aria-controls="v-pills-data-privacy" aria-selected="false">12. Data Privacy
+</button>
+
+<button class="nav-link" id="v-pills-complaints-tab" data-bs-toggle="pill"
+data-bs-target="#v-pills-complaints" type="button" role="tab"
+aria-controls="v-pills-complaints" aria-selected="false">13. Complaints
+</button>
+                                    </div>
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade show active" id="v-pills-bookings-prices"
+                                            role="tabpanel" aria-labelledby="v-pills-bookings-prices-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">1. Introduction
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> By booking a tour with Trip Arabia ("we," "our," or "us"), you ("the client," "you") agree to be bound by the following Terms and Conditions. These Terms govern the relationship between you and Trip Arabia and apply to all bookings and services provided by us. Please read them carefully before booking.
+
+                                                </p>
+                                                
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-payment" role="tabpanel"
+                                            aria-labelledby="v-pills-payment-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">2. Bookings & Payments
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> Booking Confirmation: A booking is only confirmed once full payment (100%) has been made. You will receive a confirmation email within 24–48 hours of payment.
+
+                                                    Payment Requirement: 100% of the tour price must be prepaid at the time of booking. No reservations will be held without full payment.
+                                                    
+                                                    Payment Methods: We accept payments via credit card, bank transfer, and any other methods listed on our website.
+                                                    
+                                                </p>
+                                                
+                                                
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-changes" role="tabpanel"
+                                            aria-labelledby="v-pills-changes-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">3. Cancellations & Refunds
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> Cancellation by Client: If you wish to cancel your booking, the following charges will apply:
+
+                                                    50% refund if the booking is canceled more than 7 days before the departure date.
+                                                    
+                                                    10% refund if the booking is canceled more than 2 days before the departure date.
+                                                    
+                                                    No refund for cancellations made on the same day as the departure.
+                                                    
+                                                    
+                                                    Refund Process: Refunds will be processed within 3 working days from the date of cancellation, minus any applicable fees.
+                                                    
+                                                </p>
+                                                
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-cancellations" role="tabpanel"
+                                            aria-labelledby="v-pills-cancellations-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">4. Travel Insurance
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> Travel insurance is mandatory for all clients booking with Trip Arabia. The insurance must cover personal injury, medical expenses, and cancellations. We are not responsible for any expenses incurred due to insufficient coverage.
+
+
+                                                </p>
+                                              
+                                            </div>
+                                          
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-services" role="tabpanel"
+                                            aria-labelledby="v-pills-services-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">5. Visas, Passports & Documentation
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> It is the client's responsibility to ensure that they have valid passports, visas, and other necessary travel documentation for entry into the United Arab Emirates or other destinations. We are not liable for delays or cancellations due to insufficient documentation.
+
+                                                </p>
+                                               
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-trip" role="tabpanel"
+                                            aria-labelledby="v-pills-trip-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">6. Liability & Risks
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25">
+                                                    Our Responsibility: We provide high-quality services; however, we are not liable for any injury, damage, loss, or delay resulting from events beyond our control, including but not limited to force majeure, weather conditions, or government actions.
+                                                    
+                                                    Client Responsibility: Clients participate in all activities at their own risk. Adventure or high-risk activities like desert safaris and dune bashing are done at the client's discretion, and Trip Arabia holds no liability for injuries.
+                                                    
+                                                </p>
+                                               
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-participation" role="tabpanel"
+                                            aria-labelledby="v-pills-participation-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">7. Baggage & Personal Belongings
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> We are not responsible for loss or damage to personal belongings during the tour. Clients are encouraged to safeguard their property.
+
+                                                </p>
+                                               
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-passports" role="tabpanel"
+                                            aria-labelledby="v-pills-passports-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">8. Conduct & Behavior
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> Clients must adhere to local laws and customs while in the UAE or other destinations. Offensive behavior or disrespect towards local traditions may result in the immediate termination of your participation without refund.
+
+                                                </p>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-force-majeure" role="tabpanel" aria-labelledby="v-pills-force-majeure-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">9. Force Majeure</h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25">
+                                                    This section describes conditions under which obligations are excused due to extraordinary events or circumstances beyond the control of either party.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="tab-pane fade" id="v-pills-miscellanea" role="tabpanel"
+                                            aria-labelledby="v-pills-miscellanea-tab" tabindex="0">
+                                            <div class="content mb-50">
+                                                <h3 class="title-ter">10. Amendments to Itinerary
+                                                </h3>
+                                                <span class="des">Description:</span>
+                                                <p class="text mb-25"> We reserve the right to alter or amend the tour itinerary in response to operational needs, safety concerns, or other factors beyond our control. Clients will be informed of any significant changes.
+
+                                                </p>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-governing-law" role="tabpanel"
+                                        aria-labelledby="v-pills-governing-law-tab" tabindex="0">
+                                       <div class="content mb-50">
+                                      <h3 class="title-ter">11. Governing Law & Dispute Resolution</h3>
+                                   <span class="des">Description:</span>
+                                  <p class="text mb-25">
+                                    These Terms are governed by the laws of the United Arab Emirates. Any disputes will be subject to the jurisdiction of the courts of Dubai, UAE.
+                                        </p>
+                                </div>
+                                          </div>
+
+<!-- 12. Data Privacy -->
+<div class="tab-pane fade" id="v-pills-data-privacy" role="tabpanel"
+     aria-labelledby="v-pills-data-privacy-tab" tabindex="0">
+    <div class="content mb-50">
+        <h3 class="title-ter">12. Data Privacy</h3>
+        <span class="des">Description:</span>
+        <p class="text mb-25">
+            
+            We value your privacy and handle personal data per applicable data protection laws. For more details, please review our privacy policy.
+        </p>
+    </div>
+</div>
+
+<!-- 13. Complaints -->
+<div class="tab-pane fade" id="v-pills-complaints" role="tabpanel"
+    aria-labelledby="v-pills-complaints-tab" tabindex="0">
+    <div class="content mb-50">
+        <h3 class="title-ter">13. Complaints</h3>
+        <span class="des">Description:</span>
+        <p class="text mb-25">
+            If you have a complaint regarding our services, please contact us promptly. We strive to address complaints to ensure client satisfaction.
+        </p>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+               
+
+                <%-include('../layouts/user/subfooter.ejs')%>
+
+                
+
+            </main>
+
+           
+
+            <%-include('../layouts/user/footer.ejs')%>
+
+            <!-- Bottom -->
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="logo-canvas">
+                <img src="./assets/images/trip-arabia-logo-main.png" alt="image">
+            </div>
+            <p class="des">The world’s first and largest digital market
+                for crypto collectibles and non-fungible
+            </p>
+            <ul class="canvas-info">
+                <li class="flex-three">
+                    <i class="icon-noun-mail-5780740-1"></i>
+                    <p>Info@example.com</p>
+                </li>
+                <li class="flex-three">
+                    <i class="icon-Group-9"></i>
+                    <p>123-456-789</p>
+                </li>
+                <li class="flex-three">
+                    <i class="icon-Layer-19"></i>
+                    <p>display address</p>
+                </li>
+            </ul>
+            <ul class="social flex-three">
+                <li>
+                    <a href="#">
+                        <i class="icon-icon-2"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-8"></i>
+                    </a>
+                </li>
+                
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="app/js/jquery.min.js"></script>
+    <script src="app/js/jquery.nice-select.min.js"></script>
+    <script src="app/js/bootstrap.min.js"></script>
+    <script src="app/js/swiper-bundle.min.js"></script>
+    <script src="app/js/swiper.js"></script>
+    <script src="app/js/plugin.js"></script>
+    <script src="app/js/jquery.fancybox.js"></script>
+    <script src="app/js/shortcodes.js"></script>
+    <script src="app/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <%-include('../layouts/admin/favicon.ejs')%>
+
+</head>
+
+<body class="body header-fixed">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+        <div id="pagee" class="clearfix">
+      <%-include('../layouts/admin/sideheader.ejs')%>
+
+    <main id="main">
+    <section class="profile-dashboard">
+        <div class="inner-header mb-40">
+            <h3 class="title">All Tours</h3>
+            <form id="searchForm" class="search-dashboard">
+                <input type="search" id="searchInput" placeholder="Search tours" />
+            </form>
+        </div>
+
+        <div class="my-booking-wrap">
+            <ul class="booking-table-title flex-three">
+                <li><p>Description</p></li>
+                <li><p>Created Date</p></li>
+                <li><p>Start Time</p></li>
+                <li><p>End Time</p></li>
+                <li><p>Status</p></li>
+                <li><p>Action</p></li>
+            </ul>
+            <ul id="tourList" class="booking-table-content mb-60">
+                <% tour.forEach(tour => { %>
+                    <li class="flex-three">
+                        <div class="booking-list flex-three">
+                            <div class="image">
+                                <img src="<%= tour.images[0] %>" alt="Tour Image">
+                            </div>
+                            <div class="content">
+                                <p class="id">ID: #<%= tour.hashedId %></p>
+                                <h6 class="title-booking"><a href="#"><%= tour.tourName %></a></h6>
+                                <p class="price">$<%= tour.actualPrice %></p>
+                            </div>
+                        </div>
+                        <div class="booking-list-table">
+                            <p class="date-gues"><%= new Date(tour.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></p>
+                        </div>
+                        <div class="booking-list-table">
+                            <p class="date-gues"><%= tour.tripTime.from %></p>
+                        </div>
+                        <div class="booking-list-table">
+                            <p class="date-gues"><%= tour.tripTime.to %></p>
+                        </div>
+                        <div class="booking-list-table" data-tour-id="<%= tour._id %>">
+                            <button 
+    class="date-gues <%= tour.status ? 'btn-success' : 'btn-danger' %>" 
+    data-status="<%= tour.status %>" 
+    onclick="toggleStatus(this)">
+    <%= tour.status ? 'Active' : 'Inactive' %>
+</button>
+
+                        </div>
+                        <div class="flex-five action-wrap">
+                            <div class="action flex-five" onclick="editTour('<%= tour._id %>')">
+                                <i class="icon-Vector-16"></i>
+                            </div>
+                            <div class="action flex-five" onclick="deleteTour('<%= tour._id %>')">
+                                <i class="icon-Vector-17"></i>
+                            </div>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="tf-pagination flex-five mt-20">
+                        <!-- Previous Button -->
+                        <% if (currentPage > 1) { %>
+                            <li>
+                                <a class="pages-link" href="/admin/alltour?page=<%= currentPage - 1 %>">
+                                    <i class="icon-29"></i> <!-- Replace with your left-arrow icon -->
+                                </a>
+                            </li>
+                        <% } %>
+            
+                        <!-- Page Numbers -->
+                        <% for (let i = 1; i <= totalPages; i++) { %>
+                            <li class="pages-item <%= i === currentPage ? 'active' : '' %>">
+                                <a class="pages-link" href="/admin/alltour?page=<%= i %>"><%= i %></a>
+                            </li>
+                        <% } %>
+            
+                        <!-- Next Button -->
+                        <% if (currentPage < totalPages) { %>
+                            <li>
+                                <a class="pages-link" href="/admin/alltour?page=<%= currentPage + 1 %>">
+                                    <i class="icon--1"></i> <!-- Replace with your right-arrow icon -->
+                                </a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+            
+
+        </div>
+
+        
+    </section>
+    
+</main>
+
+
+                <%-include('../layouts/admin/footer.ejs')%>
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+    <!-- Modal search-->
+    <div class="modal search-mobie fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <form action="/" class="search-form-mobie">
+                        <div class="search">
+                            <i class="icon-circle2017"></i>
+                            <input type="search" placeholder="Search Travel" class="search-input" autocomplete="off">
+                            <button type="button">Search</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function editTour(tourId) {
+          // Redirect to the edit page
+          location.href = `/admin/tours/${tourId}`;
+        }
+      </script>
+
+<script>
+    // Delete Tour with SweetAlert2
+    function deleteTour(TourId) {
+        // Confirmation popup using SweetAlert2
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Once deleted, you will not be able to recover this Tour!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel',
+            dangerMode: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Send DELETE request
+                fetch(`/admin/tours/${TourId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data.message === 'Tour deleted successfully') {
+                            // Success message
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: data.message,
+                                icon: 'success',
+                                timer: 1500, // Auto-close after 1.5 seconds
+                                showConfirmButton: false,
+                            }).then(() => {
+                                location.reload(); // Reload the page after SweetAlert2 closes
+                            });
+                        } else {
+                            // Failure message
+                            Swal.fire({
+                                title: 'Error!',
+                                text: `Failed to delete category: ${data.message}`,
+                                icon: 'error',
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred while deleting the category.',
+                            icon: 'error',
+                        });
+                    });
+            }
+        });
+    }
+</script>
+<script>
+    function toggleStatus(button) {
+    const currentStatus = button.getAttribute('data-status') === 'true'; // Get current status (true or false)
+    const newStatus = !currentStatus;  // Toggle status: if true -> false, if false -> true
+
+    // Change the button text and class based on the new status
+    button.textContent = newStatus ? 'Active' : 'Inactive';
+    button.classList.toggle('active', newStatus);
+    button.classList.toggle('inactive', !newStatus);
+
+    // Update the status in the button's data attribute
+    button.setAttribute('data-status', newStatus);
+
+    // Get the tour ID from the parent element's data attribute
+    const tourId = button.closest('.booking-list-table').getAttribute('data-tour-id');
+    
+    // Send the update to the backend
+    updateTourStatus(tourId, newStatus);
+}
+
+function updateTourStatus(tourId, newStatus) {
+    fetch(`/admin/toursactive/${tourId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: newStatus }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === 'Tour status updated') {
+            alert(`Tour status has been updated to ${newStatus ? 'Active' : 'Inactive'}.`);
+        }
+    })
+    .catch(error => {
+        console.error('Error updating tour status:', error);
+        alert('There was an error updating the tour status. Please try again.');
+    });
+}
+
+</script>
+
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    
+    const searchQuery = document.getElementById('searchInput').value;  // Get the search input value
+
+    // Send AJAX request to search tours
+    fetch(`/search?tours=${searchQuery}`)
+        .then(response => response.json())
+        .then(data => {
+            const tourList = document.getElementById('tourList');
+            tourList.innerHTML = '';  // Clear existing tours
+
+            if (data.length === 0) {
+                tourList.innerHTML = '<li>No tours found</li>';  // Display message if no tours found
+                return;
+            }
+
+            // Loop through the tours and update the list
+            data.forEach(tour => {
+                const tourItem = `
+                    <li class="flex-three">
+                        <div class="booking-list flex-three">
+                            <div class="image">
+                                <img src="${tour.images[0]}" alt="Tour Image">
+                            </div>
+                            <div class="content">
+                                <p class="id">ID: #${tour.hashedId}</p>
+                                <h6 class="title-booking"><a href="#">${tour.tourName}</a></h6>
+                                <p class="price">$${tour.actualPrice}</p>
+                            </div>
+                        </div>
+                        <div class="booking-list-table">
+                            <p class="date-gues">${new Date(tour.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
+                        </div>
+                        <div class="booking-list-table">
+                            <p class="date-gues">${tour.tripTime.from}</p>
+                        </div>
+                        <div class="booking-list-table">
+                            <p class="date-gues">${tour.tripTime.to}</p>
+                        </div>
+                        <div class="booking-list-table" data-tour-id="${tour._id}">
+                            <button class="date-gues" data-status="${tour.status}" onclick="toggleStatus(this)">
+                                ${tour.status ? 'Active' : 'Inactive'}
+                            </button>
+                        </div>
+                        <div class="flex-five action-wrap">
+                            <div class="action flex-five" onclick="editTour('${tour._id}')">
+                                <i class="icon-Vector-16"></i>
+                            </div>
+                            <div class="action flex-five" onclick="deleteTour('${tour._id}')">
+                                <i class="icon-Vector-17"></i>
+                            </div>
+                        </div>
+                    </li>
+                `;
+                tourList.innerHTML += tourItem;  // Append the tour to the list
+            });
+        })
+        .catch(error => console.error('Error fetching tours:', error));
+});
+
+</script>
+
+</body>
+
+</html>

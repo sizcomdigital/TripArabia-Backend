@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <%-include('../layouts/admin/favicon.ejs')%>
+
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+
+        <div id="pagee" class="clearfix">
+
+            <%-include('../layouts/admin/sideheader.ejs')%>
+            
+                <!-- End Main Header -->
+                <main id="main">
+                    <section class="profile-dashboard">
+                        <div class="inner-header mb-40">
+                            <h3 class="title">Add Tour</h3>
+                            <p class="des">There are many variations of passages of Lorem Ipsum</p>
+                        </div>
+                        <form id="form-add-tour" class="form-add-tour" enctype="multipart/form-data">
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">1. information</h4>
+                                <div class="grid-input-2 mb-45">
+                                    <div class="input-wrap">
+                                        <label>Enter your tittle</label>
+                                        <input type="text" placeholder="VIP evening desert safari" name="tourName" value="<%= tour.tourName %>">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <label>Select your Category</label>
+                                        <div class="nice-select" tabindex="0" id="categoryDropdown">
+                                            <span class="current">Select Category</span>
+                                            
+                                            <ul class="list">
+                                                <li data-value="" class="option <%= !tour.category ? 'selected focus' : '' %>">Select Category</li>
+                                                <% categories.forEach(category => { %>
+                                                    <li 
+                                                        data-value="<%= category._id %>" 
+                                                        class="option <%= tour.category && tour.category._id.toString() === category._id.toString() ? 'selected focus' : '' %>">
+                                                        <%= category.name %>
+                                                    </li>
+                                                    <input type="hidden" id="selectedCategory" name="category" value="<%= tour.category ? tour.category._id : '' %>">
+
+                                                <% }) %>
+                                            </ul>
+                                            
+                                        </div>
+                                        <!-- Hidden input to store the selected category ID -->
+                                      <input type="hidden" id="selectedCategory" name="category" value="">
+                                    </div>
+                                </div>
+                                <div class="input-wrap mb-45">
+                                    <label>Location Name</label>
+                                    <input type="text" placeholder="Dubai Desert" name="locationName" value="<%= tour.locationName %>">
+                                </div>
+                                <div class="input-wrap mb-45">
+                                    <label>Description</label>
+                                    <textarea name="description" rows="12" cols="50"
+                                        placeholder="Write content"><%= tour.description%></textarea>
+                                </div>
+
+                                <div class="input-wrap">
+                    <label>Upload Photo</label>
+                    <% tour.images.forEach((image, index) => { %>
+                        <div class="upload-image">
+                            <img src="<%=image%>" alt="Existing Image <%= index + 1 %>" style="height: 120px; width: 120px; margin-bottom: 5px;">
+                            
+                            <!-- Delete Button with a data attribute to store the image URL -->
+                            <button type="button" class="btn btn-danger btn-sm delete-image" data-image="<%= image %>" data-tour="<%= tour._id %>">Delete</button>
+                        </div>
+                    <% }) %>
+                    
+                    
+                 <div class="upload-image-add-car mb-30">
+
+        <!-- First Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input name="images" type="file" id="photoLoad" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad')">
+            </label>
+            <img id="previewPhotoLoad" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Second Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad1" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images"  id="photoLoad1" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad1')">
+            </label>
+            
+            <img id="previewPhotoLoad1" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Third Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad2" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images" id="photoLoad2" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad2')">
+            </label>
+            <img id="previewPhotoLoad2" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+        <!-- Fourth Image Input -->
+        <div class="upload-image">
+            <label for="photoLoad3" class="uploadLabel">
+                <i class="icon-Group-10"></i>
+                <span>Add a Photo</span>
+                <input type="file" name="images" id="photoLoad3" class="photoLoad" accept="image/*" onchange="previewImage(event, 'previewPhotoLoad3')">
+            </label>
+            <img id="previewPhotoLoad3" class="image-preview" src="#" alt="Image Preview" style="display: none; margin-top: 10px; max-height: 100px;">
+        </div>
+
+    </div>
+    <p><span class="text-main">*</span>Supported <span class="text-main">Png</span> & Jpg Not more than 2 Mb</p>
+                                   </div>
+
+                            </div>
+                          
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">2. Timing</h4>
+                                <div class="grid-input-2 mb-45">
+                                    <!-- From -->
+                                    <div class="input-wrap">
+                                        <label for="tripFrom">From</label>
+                                        <input 
+                                            type="time" 
+                                            id="tripFrom" 
+                                            placeholder="Select Time" 
+                                            name="tripTime[from]" 
+                                            value="<%= tour.tripTime ? tour.tripTime.from : '' %>">
+                                    </div>
+                            
+                                    <!-- To -->
+                                    <div class="input-wrap">
+                                        <label for="tripTo">To</label>
+                                        <input 
+                                            type="time" 
+                                            id="tripTo" 
+                                            placeholder="Select Time" 
+                                            name="tripTime[to]" 
+                                            value="<%= tour.tripTime ? tour.tripTime.to : '' %>">
+                                    </div>
+                            
+                                    <!-- Hours of Trip -->
+                                    <div class="input-wrap">
+                                        <label for="tripDuration">Hours of Trip</label>
+                                        <input 
+                                            type="number" 
+                                            id="tripDuration" 
+                                            placeholder="Enter Hours" 
+                                            min="0" 
+                                            step="1" 
+                                            name="hoursOfTrip" 
+                                            value="<%= tour.hoursOfTrip || '' %>">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">3. What’s Included?</h4>
+                            
+                                <!-- Include Feature Section -->
+                                <div class="row mb-60">
+                                    <div class="col-lg-12">
+                                        <div class="input-wrap">
+                                            <label for="includeFeatureInput">Include Feature</label>
+                                            <input type="text" id="includeFeatureInput" class="form-control" name="included" placeholder="Type a feature (e.g., Laundry Service)" value="<%= tour.included%>">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            
+                                <!-- Exclude Feature Section -->
+                                <div class="row mb-60">
+                                    <div class="col-lg-12">
+                                        <div class="input-wrap">
+                                            <label for="excludeFeatureInput">Excluded Feature</label>
+                                            <input type="text" id="excludeFeatureInput" name="excluded"  class="form-control" placeholder="Type a feature (e.g., Swimming Pool)" value="<%= tour.excluded%>">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            
+                                <!-- Tour Highlights Section -->
+                                <div class="row mb-60">
+                                    <div class="col-lg-12">
+                                        <div class="input-wrap">
+                                            <label for="highlightFeatureInput">Tour Highlights</label>
+                                            <input type="text" id="highlightFeatureInput" name="tourHighlights" class="form-control" placeholder="Type a highlight (e.g., Scenic Views)" value="<%= tour.tourHighlights%>">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+
+
+
+
+                            <div class="widget-dash-board pr-256 mb-75">
+                                <h4 class="title-add-tour mb-30">4. Pricing</h4>
+
+                                <div class="grid-input-2 mb-45">
+                                    <div class="input-wrap">
+                                        <label>Actual Price</label>
+                                        <input type="text" placeholder="AED199" name="actualPrice" value="<%= tour.actualPrice%>">
+                                    </div>
+                                    <div class="input-wrap">
+                                        <label>Offer Price</label>
+                                        <input type="text" placeholder="AED199" name="offerPrice" value="<%= tour.offerPrice%>" >
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           
+                            <div class="input-wrap ">
+                                <button type="submit" class="button-add">update</button>
+                                <button type="reset" class="button-add" style="background-color: grey;">reset</button>
+                                <a  href="/admin/alltour" class="button-add" style="background-color: grey; color: white;">back</a>
+
+                            </div>
+                            
+                        </form>
+                    </section>
+                </main>
+
+                <%-include('../layouts/admin/footer.ejs')%>
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            ...
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+
+    <script>
+        function previewImage(event, previewId) {
+            const file = event.target.files[0];
+            const previewElement = document.getElementById(previewId);
+    
+            if (file) {
+                const reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    previewElement.src = e.target.result;
+                    previewElement.style.display = "block";
+                };
+    
+                reader.readAsDataURL(file);
+            } else {
+                previewElement.src = "#";
+                previewElement.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+
+
+<script>
+   // JavaScript to capture the selected category ID and update the hidden input
+document.querySelectorAll('.nice-select .list .option').forEach(option => {
+    option.addEventListener('click', function () {
+        const selectedCategoryId = this.getAttribute('data-value'); // Get the category ID
+        const categoryName = this.textContent; // Get the category name (optional for display)
+        
+        // Update the hidden input field with the selected category ID
+        document.getElementById('selectedCategory').value = selectedCategoryId;
+        
+        // Update the displayed category name in the dropdown (optional)
+        document.querySelector('.nice-select .current').textContent = categoryName;
+    });
+});
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    // Add event listener to the delete buttons
+document.querySelectorAll('.delete-image').forEach(button => {
+  button.addEventListener('click', async (e) => {
+    const imageUrlToDelete = e.target.getAttribute('data-image'); // Get the image URL from the data attribute
+    const tourId = e.target.getAttribute('data-tour'); // Get the tour ID from the data attribute
+
+    try {
+      const response = await fetch(`/admin/img/${tourId}`, {
+        method: 'DELETE', // Use DELETE method for deletion
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          imageUrl: imageUrlToDelete,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message); // Show success message
+        // Optionally, remove the image from the DOM
+        e.target.closest('.upload-image').remove();
+      } else {
+        alert(data.message); // Show error message
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error deleting image');
+    }
+  });
+});
+
+</script>
+
+
+
+
+
+
+<script>
+    // Event listener for form submission
+    document.getElementById("form-add-tour").addEventListener("submit", async function (e) {
+        e.preventDefault();  // Prevent the form from submitting normally
+
+        // Create a new FormData object from the form
+        const formData = new FormData(this);
+
+        // Ensure the selected category is included in the form data
+        const selectedCategoryId = document.getElementById('selectedCategory').value;
+        if (selectedCategoryId) {
+            formData.set('category', selectedCategoryId);  // Set the selected category if available
+        } else {
+            // Use existing category ID if no new category is selected
+            formData.set('category', '<%= tour.category ? tour.category._id : "" %>');
+        }
+
+        try {
+            // Send the form data via AJAX (PUT request to update the tour)
+            const response = await fetch(`/admin/tours/<%= tour._id %>`, {
+                method: "PUT",
+                body: formData,
+            });
+
+            const data = await response.json();
+        console.log(data,"ggggggggggggggggggg");
+        
+            if (response.ok) {
+                // Show a success message with SweetAlert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tour Updated',
+                    text: data.message || 'The tour details have been updated successfully.',
+                    confirmButtonText: 'OK',
+                }).then(() => {
+                    // Optionally reset the form or redirect to a different page
+                    window.location.href = "/admin/alltour";  // Redirect to the tours list
+                });
+            } else {
+                // Show an error message if something goes wrong
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Update Failed',
+                    text: data.message || "An error occurred while updating the tour. Please try again.",
+                    confirmButtonText: 'Try Again',
+                });
+            }
+        } catch (error) {
+            // Show an error message if there is a network error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "An unexpected error occurred. Please try again later.",
+                confirmButtonText: 'OK',
+            });
+            console.error('Error:', error);  // Log the error to the console for debugging
+        }
+    });
+</script>
+
+
+
+
+
+
+</body>
+
+</html>

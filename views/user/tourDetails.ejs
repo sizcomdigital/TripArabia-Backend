@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="app/css/app.css">
+    <link rel="stylesheet" href="app/css/map.min.css">
+    <link rel="stylesheet" href="app/css/jquery.fancybox.min.css">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon-precomposed" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+        <div id="pagee" class="clearfix">
+                       
+            <%-include('../layouts/user/header.ejs')%>
+
+            <main id="main">
+
+                
+                <section class="tour-single">
+                    <div class="tf-container">
+                        
+                        <div class="row pd-main">
+                            <div class="col-lg-12">
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-information" role="tabpanel"
+                                        aria-labelledby="pills-information-tab" tabindex="0">
+                                        <div class="row mb-50">
+                                            <div class="col-lg-12">
+                                                <div class="inner-heading-wrap flex-two">
+                                                    <div class="inner-heading">
+                                                        <span class="feature">Featured</span>
+                                                        <h2 class="title"><%= tour.tourName %></h2>
+                                                        <ul class="flex-three list-wrap-heading">
+                                                            <li class="flex-three">
+                                                                <i class="icon-time-left"></i>
+                                                                <span><%= tour.hoursOfTrip %> Hours of Trip</span>
+                                                            </li>
+                                                           
+                                                            <li class="flex-three">
+                                                                <i class="icon-18"></i>
+                                                                <span><%= tour.locationName %></span>
+                                                            </li>
+
+
+                                                        </ul>
+
+                                                    </div>
+                                                    <div class="inner-price">
+                                                        <div class="flex-three">
+                                                            <div class="start">
+                                                                <i class="icon-Star"></i>
+                                                                <i class="icon-Star"></i>
+                                                                <i class="icon-Star"></i>
+                                                                <i class="icon-Star"></i>
+                                                                <i class="icon-Star"></i>
+                                                            </div>
+                                                            <span class="review">(1 Review)</span>
+                                                        </div>
+                                                        <p class="price-sale text-main">
+                                                            <del class="text-muted">AED<%= tour.actualPrice %></del>
+                                                            <span class="offer-price text-danger">AED <%= tour.offerPrice %></span>
+                                                        </p>
+                                                        
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row mb-40 image-gallery-single">
+                                            <div class="col-12 col-sm-6">
+                                                <img src="<%=tour.images[0]%>" alt="image">
+                                            </div>
+                                            <% if (tour.images[1]) { %>
+                                                <div class="col-6 col-sm-3">
+                                                    <img src="<%= tour.images[1] %>" alt="image">
+                                                </div>
+                                            <% } %>
+                                            
+                                            <!-- <div class="col-6 col-sm-3">
+                                                <img src="assets/uploads/<%=tour.images[0]%>" alt="image">
+                                            </div> -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="information-content-tour">
+                                                    <div class="description-wrap mb-40">
+                                                        <span class="description">Description:</span>
+                                                        <p class="des"><%= tour.description %></p>
+                                                    </div>
+                                                    
+                                                    
+                                                    <div class="expect-wrap mb-70">
+                                                        <h4 class="title mb-18">What to Expect</h4>
+                                                        
+                                                       
+                                                        <div class="expect flex-three">
+                                                            <span>start Time</span>
+                                                            <p>Approximately  <%= tour.tripTime.from%></p>
+                                                        </div>
+                                                        <div class="expect flex-three">
+                                                            <span>Return Time</span>
+                                                            <p>Approximately  <%= tour.tripTime.to%></p>
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="expect-wrap mb-70">
+                                                        
+                                                        <div class="row">
+                                                            <!-- Included Items -->
+                                                            <div class="col-md-6">
+                                                                <h5 class="subtitle">Included</h5>
+                                                                <ul class="listing-clude">
+                                                                    <% tour.included.forEach(function(item) { %>
+                                                                        <li class="flex-three">
+                                                                            <i class="icon-Vector-7" style="color: green;"></i>
+                                                                            <p><%= item %></p>
+                                                                        </li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                            </div>
+                                                            
+                                                    
+                                                            <!-- Excluded Items -->
+                                                            <div class="col-md-6">
+                                                                <h5 class="subtitle">Excluded</h5>
+                                                                <ul class="listing-clude">
+                                                                    <% tour.excluded.forEach(function(item) { %>
+                                                                    <li class="flex-three">
+                                                                        <i class="fas fa-times" style="color: red;"></i>
+                                                                        <p><%= item %></p>
+                                                                    </li>
+                                                                    <% }); %>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   <div class="expect-wrap">
+    <h4 class="title mb-40">Tour Amenities</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="listing-icon">
+                <% tour.tourHighlights.forEach(function(highlight, index) { %>
+                    <li class="flex-three">
+                        <i class="icon-10"></i>
+                        <p><%= highlight %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+    
+    
+</div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="side-bar-right">
+                                                    <div class="sidebar-widget">
+                                                        <h6 class="block-heading">Book This Tour</h6>
+
+    <form style="padding: 10px;" onsubmit="sendToWhatsApp(event)">
+    <!-- Name Field -->
+    <div class="mb-2">
+        <label for="name" class="form-label" style="font-size: 0.9em; margin-bottom: 4px;">Name</label>
+        <input type="text" class="form-control" id="name" style="padding: 6px; font-size: 0.9em;" required>
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-2">
+        <label for="email" class="form-label" style="font-size: 0.9em; margin-bottom: 4px;">Email</label>
+        <input type="email" class="form-control" id="email" style="padding: 6px; font-size: 0.9em;" required>
+    </div>
+
+    <!-- Phone Field -->
+    <div class="mb-2">
+        <label for="phone" class="form-label" style="font-size: 0.9em; margin-bottom: 4px;">Phone</label>
+        <input type="tel" class="form-control" id="phone" style="padding: 6px; font-size: 0.9em;" required>
+    </div>
+
+    <!-- Adults Number Field -->
+    <div class="mb-2">
+        <label for="adults" class="form-label" style="font-size: 0.9em; margin-bottom: 4px;">Adults No</label>
+        <input type="number" class="form-control" id="adults" style="padding: 6px; font-size: 0.9em;" required>
+    </div>
+
+    <!-- Children Number Field -->
+    <div class="mb-2">
+        <label for="children" class="form-label" style="font-size: 0.9em; margin-bottom: 4px;">Children No</label>
+        <input type="number" class="form-control" id="children" style="padding: 6px; font-size: 0.9em;" required>
+    </div>
+
+    <!-- Date Field -->
+    <div class="mb-2">
+        <label for="date" class="form-label" style="font-size: 0.9em; margin-bottom: 4px;">Date</label>
+        <input type="date" class="form-control" id="date" style="padding: 6px; font-size: 0.9em;" required>
+    </div>
+
+    
+
+    <!-- Total -->
+    <div class="mb-2">
+        <label for="total" class="form-label" style="font-size: 0.9em;">per person</label>
+        <span class="total text-main" style="font-size: 1.1em; font-weight: bold;">AED<%= tour.offerPrice %></span>
+    </div>
+
+    <!-- Submit and Reset Buttons -->
+    <div class="mb-2">
+        <button type="submit" style="background-color: #ffa801; padding: 8px 16px; font-size: 0.9em; border: none; color: white;">Submit Booking</button>
+        <button type="reset" style="background-color: #ccc; padding: 8px 16px; font-size: 0.9em; border: none; margin-left: 10px;">Reset</button>
+    </div>
+    </form>
+                                                        
+                                                    </div>
+                                                    <div class="sidebar-widget">
+                                                        <h6 class="block-heading">Book With Confidence</h6>
+                                                        <ul class="category-confidence">
+                                                            <li class="flex-three">
+                                                                <i class="icon-customer-service-1"></i>
+                                                                <span>Customer care available 24/7</span>
+                                                            </li>
+                                                            <li class="flex-three">
+                                                                <i class="icon-Vector-6"></i>
+                                                                <span>Hand-picked Tours & Activities</span>
+                                                            </li>
+                                                            <li class="flex-three">
+                                                                <i class="icon-price-tag-1-1"></i>
+                                                                <span>No-hassle best price guarantee</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <%-include('../layouts/user/subfooter.ejs')%>
+
+
+            </main>
+
+            <%-include('../layouts/user/footer.ejs')%>
+
+            <!-- Bottom -->
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+
+    <a id="scroll-top" class="button-go"></a>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="logo-canvas">
+                <img src="./assets/images/trip-arabia-logo-main.png" alt="image">
+            </div>
+            <p class="des">The world’s first and largest digital market
+                for crypto collectibles and non-fungible
+            </p>
+            <ul class="canvas-info">
+                <li class="flex-three">
+                    <i class="icon-noun-mail-5780740-1"></i>
+                    <p>Info@webmail.com</p>
+                </li>
+                <li class="flex-three">
+                    <i class="icon-Group-9"></i>
+                    <p>684 555-0102 490</p>
+                </li>
+                <li class="flex-three">
+                    <i class="icon-Layer-19"></i>
+                    <p>6391 Elgin St. Celina, NYC 10299</p>
+                </li>
+            </ul>
+            <ul class="social flex-three">
+                <li>
+                    <a href="#">
+                        <i class="icon-icon-2"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-8"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-6"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="app/js/jquery.min.js"></script>
+    <script src="app/js/jquery.nice-select.min.js"></script>
+    <script src="app/js/bootstrap.min.js"></script>
+    <script src="app/js/swiper-bundle.min.js"></script>
+    <script src="app/js/swiper.js"></script>
+    <script src="app/js/plugin.js"></script>
+    <script src="app/js/jquery.fancybox.js"></script>
+    <script src="app/js/map.min.js"></script>
+    <script src="app/js/map.js"></script>
+    <script src="app/js/shortcodes.js"></script>
+    <script src="app/js/main.js"></script>
+
+   <script>
+    function sendToWhatsApp(event) {
+    event.preventDefault(); // Prevent the form from submitting
+    
+    // Collect form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const adults = document.getElementById("adults").value;
+    const children = document.getElementById("children").value;
+    const date = document.getElementById("date").value;
+    const tourName = "<%= tour.tourName %>";
+    const offerPrice = "<%= tour.offerPrice %>";
+
+    // Validate required fields
+    if (!name || !email || !phone || !adults || !children || !date ) {
+        alert("Please fill all the fields.");
+        return;
+    }
+
+    // Format message
+    const message = `
+        Booking Request:
+        - Tour: ${tourName}
+        - Name: ${name}
+        - Email: ${email}
+        - Phone: ${phone}
+        - Adults: ${adults}
+        - Children: ${children}
+        - Date: ${date}
+        - Price per person: AED${offerPrice}
+    `.trim();
+
+    const whatsappNumber = "+971545800101"; // Replace with your WhatsApp number in international format
+
+    // WhatsApp URL
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // Redirect to WhatsApp
+    window.open(url, "_blank");
+}
+
+   </script>
+
+</body>
+
+</html>

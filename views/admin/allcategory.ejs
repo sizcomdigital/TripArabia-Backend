@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <%-include('../layouts/admin/favicon.ejs')%>
+
+</head>
+
+<body class="body header-fixed ">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+
+    <!-- /preload -->
+
+    <div id="wrapper">
+
+        <div id="pagee" class="clearfix">
+
+            <%-include('../layouts/admin/sideheader.ejs')%>
+            <main id="main">
+                <section class="profile-dashboard">
+                    <section id="form-add-tour" class="form-add-tour">
+                        <div class="widget-dash-board pr-256 mb-75">
+                            <h4 class="title-add-tour mb-30">All Categories</h4>
+                            
+                            <!-- Add New Category Button -->
+                            <div class="mb-3">
+                                <button class="btn btn-primary" onclick="location.href='/admin/addcategory'" style="background-color: #f29200;">Add New Category</button>
+                            </div>
+            
+                            <!-- Categories Table -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Category Name</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% categories.forEach((category, index) => { %>
+                                            <tr>
+                                                <td><%= index + 1 %></td>
+                                                <td><%= category.name %></td>
+                                                <td>
+                                                    <!-- Edit Button -->
+                                                    <button class="btn btn-warning btn-sm" onclick="editCategory('<%= category._id %>')">
+                                                        Edit
+                                                    </button>
+                                                    <!-- Delete Button -->
+                                                    <button class="btn btn-danger btn-sm" onclick="deleteCategory('<%= category._id %>')">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </main>
+
+                <%-include('../layouts/admin/footer.ejs')%>
+
+
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+    <!-- Modal search-->
+    <div class="modal search-mobie fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <form action="/" class="search-form-mobie">
+                        <div class="search">
+                            <i class="icon-circle2017"></i>
+                            <input type="search" placeholder="Search Travel" class="search-input" autocomplete="off">
+                            <button type="button">Search</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            ...
+        </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Javascript -->
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+
+    <script>
+        // Delete Category with SweetAlert
+        function deleteCategory(categoryId) {
+            // Confirmation popup using SweetAlert
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this category!",
+                icon: "warning",
+                buttons: ["Cancel", "Delete"],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    // Send DELETE request
+                    fetch(`/admin/deletecategory/${categoryId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message === 'Category deleted successfully') {
+                                // Success message
+                                swal({
+                                    title: "Deleted!",
+                                    text: data.message,
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 1500, // Auto-close after 1.5 seconds
+                                }).then(() => {
+                                    location.reload(); // Reload the page after SweetAlert closes
+                                });
+                            } else {
+                                // Failure message
+                                swal({
+                                    title: "Error!",
+                                    text: `Failed to delete category: ${data.message}`,
+                                    icon: "error",
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            swal({
+                                title: "Error!",
+                                text: "An error occurred while deleting the category.",
+                                icon: "error",
+                            });
+                        });
+                }
+            });
+        }
+    </script>
+    
+    
+
+
+</body>
+</html>

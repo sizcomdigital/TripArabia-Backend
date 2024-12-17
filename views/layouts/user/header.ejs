@@ -1,0 +1,163 @@
+    <!-- Main Header -->
+     <style>
+        .highlight {
+    color: #26b7bc;
+    font-weight: bold;
+}
+
+     </style>
+    <header class="main-header header-style2 flex">
+        <!-- Header Lower -->
+        <div id="header">
+            <div class="header-top relative overflow-hidden">
+                <div class="header-top-wrap flex-two">
+                    <div class="header-top-left">
+                        <div class="follow-social flex-two">
+                            <ul class="flex-two">
+                                <li><a href="#" target="_blank"><i class="icon-icon-2"></i></a></li>
+                               
+                                <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                                
+                                <li>
+                                    <a href="https://www.instagram.com/trip_arabia/" target="_blank">
+                                        <i class="icon-8"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-top-right">
+                        <ul class=" flex-three">
+                            
+                            <li class="flex-three">
+                                <i class="icon-mail"></i>
+                                <span>info@trip-arabia.com
+                                </span>
+                            </li>
+                            <li class="flex-three">
+                                <i class="icon-phone"></i>
+                                <span>+971545800101</span>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="header-top-left flex-two">
+                        <div class="follow-social flex-two">
+                            <ul class="flex-two">
+                                <li><a href="#"><i class="icon-icon-2"></i></a></li>
+                                
+                                <li><a href="#"><i class="icon-x"></i></a></li>
+                                
+                                <li><a href="https://www.instagram.com/trip_arabia/" target="_blank"><i class="icon-8"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <img src="./assets/images/page/mask-header-3.png" alt="image" class="mask-header3">
+            </div>
+            <div class="header-lower">
+                <div class="tf-container full">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="inner-container flex justify-space align-center">
+                                <!-- Logo Box -->                                       
+                                <div class="logo-box">
+                                    <div class="logo">
+                                        <a href="index.html">
+                                            <img src="./assets/images/trip-arabia-logo-main.png" alt="Logo">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="nav-outer flex align-center">
+                                    <!-- Main Menu -->
+                                    <nav class="main-menu show navbar-expand-md">
+                                        <div class="navbar-collapse collapse clearfix"
+                                            id="navbarSupportedContent">
+                                            <ul class="navigation clearfix">
+                                                <li class="<%= activePage === 'home' ? 'active' : '' %>">
+                                                    <a href="/" style="<%= activePage === 'home' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Home</a>
+                                                </li>
+                                                
+                                                <li class="dropdown2" class="<%= activePage === 'Tours' ? 'active' : '' %>">
+                                                    <a href="" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
+                                                    <ul>
+                                                        <% category.forEach(category => { %>
+                                                            <li><a href="/category?id=<%= category._id %>"><%= category.name %></a></li>
+                                                            <% }); %>
+                                                    </ul>
+                                                    
+                                                </li>
+                                                <li class="<%= activePage === 'service' ? 'active' : '' %>">
+                                                    <a href="/service" style="<%= activePage === 'service' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Services</a>                                                </li>
+                                                <li class="<%= activePage === 'blog' ? 'active' : '' %>">
+
+                                                    <a href="/blog" style="<%= activePage === 'blog' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Blog</a>                                                </li>
+
+                                                </li>
+                                                <li class="<%= activePage === 'privacypolicy' || activePage === 'termscondition' || activePage === 'about' ? 'dropdown2 current' : 'dropdown2' %>">
+                                                    <a href="#">Abouts</a>
+                                                    <ul>
+                                                        <li>
+
+                                                            <a href="/aboutus" style="<%= activePage === 'about' ? 'color: #26b7bc; font-weight: bold;' : '' %>">About Us</a>                                                
+
+                                                        </li>
+                                                        <li >
+
+                                                            <a href="/privacypolicy" style="<%= activePage === 'privacypolicy' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Privacy policy</a>                                                
+
+                                                        </li >
+                                                        <li >
+                                                            <a href="/termscondition" style="<%= activePage === 'termscondition' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Terms Condition</a>
+                                                           </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="/contact" style="<%= activePage === 'contact' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Contact Us</a>                                                </li>
+                                                </li>
+                                            </ul>
+                                            
+                                            
+                                        </div>
+                                    </nav>
+                                    <!-- Main Menu End-->
+                                </div>
+                                <div class="header-account flex align-center">
+                                    
+                                    
+                                   
+                                    <div class="icon-bar-header">
+                                        <a href="#" class="flex-three" data-bs-toggle="offcanvas"
+                                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                            <i class="icon-Vector3"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mobile-nav-toggler mobile-button">
+                                    <i class="icon-bar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Lower -->
+        <!-- Mobile Menu  -->
+        <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index.html">
+                        <img src="./assets/images/trip-arabia-logo-main.png" alt=""></a></div>
+                <div class="bottom-canvas">
+                    <div class="menu-outer">
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+    </header>
+    <!-- End Main Header -->
