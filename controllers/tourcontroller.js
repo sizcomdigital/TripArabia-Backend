@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 
 module.exports = {
   addTour: async (req, res) => {
-    console.log(req.body, req.files);
 
     const {
       tourName,

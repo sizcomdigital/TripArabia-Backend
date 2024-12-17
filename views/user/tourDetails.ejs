@@ -82,10 +82,16 @@
                                                             </div>
                                                             <span class="review">(1 Review)</span>
                                                         </div>
-                                                        <p class="price-sale text-main">
-                                                            <del class="text-muted">AED<%= tour.actualPrice %></del>
-                                                            <span class="offer-price text-danger">AED <%= tour.offerPrice %></span>
-                                                        </p>
+                                                        <% if (tour.offerPrice) { %>
+                                                            <p class="price-sale text-main">
+                                                                <del class="text-muted">AED <%= tour.actualPrice %></del>
+                                                                <span class="offer-price text-danger">AED <%= tour.offerPrice %></span>
+                                                            </p>
+                                                        <% } else { %>
+                                                            <p class="price text-main">
+                                                                AED <%= tour.actualPrice %>
+                                                            </p>
+                                                        <% } %>
                                                         
                                                     </div>
                                                 </div>

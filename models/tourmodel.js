@@ -28,7 +28,7 @@ const tourSchema = new mongoose.Schema({
   },
   offerPrice: {
     type: Number,
-    required: [true, 'Offer price is required'],
+    required: [false, 'Offer price is required'],
     min: [0, 'Offer price must be a positive number'],
   },
   locationName: {
