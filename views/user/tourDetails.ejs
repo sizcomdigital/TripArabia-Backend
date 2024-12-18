@@ -44,7 +44,6 @@
                 
                 <section class="tour-single">
                     <div class="tf-container">
-                        
                         <div class="row pd-main">
                             <div class="col-lg-12">
                                 <div class="tab-content" id="pills-tabContent">
@@ -66,10 +65,7 @@
                                                                 <i class="icon-18"></i>
                                                                 <span><%= tour.locationName %></span>
                                                             </li>
-
-
                                                         </ul>
-
                                                     </div>
                                                     <div class="inner-price">
                                                         <div class="flex-three">
@@ -126,18 +122,26 @@
                                                         
                                                        
                                                         <div class="expect flex-three">
-                                                            <span>start Time</span>
-                                                            <p>Approximately  <%= tour.tripTime.from%></p>
+                                                            <span>Start Time</span>
+                                                            <% if (tour?.tourName === "Yellow Boat Tour Abu Dhabi" || tour?.tourName === "Luxury Yacht Cruise Abu Dhabi") { %>
+                                                                <p>Any time between <%= tour.tripTime?.from || "N/A" %></p>
+                                                            <% } else { %>
+                                                                <p>Approximately <%= tour?.tripTime?.from || "N/A" %></p>
+                                                            <% } %>
                                                         </div>
                                                         <div class="expect flex-three">
                                                             <span>Return Time</span>
-                                                            <p>Approximately  <%= tour.tripTime.to%></p>
+                                                            <% if (tour?.tourName === "Yellow Boat Tour Abu Dhabi" || tour?.tourName === "Luxury Yacht Cruise Abu Dhabi") { %>
+                                                                <p>Any time between <%= tour.tripTime?.to || "N/A" %></p>
+                                                            <% } else { %>
+                                                                <p>Approximately <%= tour?.tripTime?.to || "N/A" %></p>
+                                                            <% } %>
                                                         </div>
                                                         
-                                                    </div>
-
-                                                    <div class="expect-wrap mb-70">
                                                         
+                                                    
+                                                    </div>
+                                                    <div class="expect-wrap mb-70">
                                                         <div class="row">
                                                             <!-- Included Items -->
                                                             <div class="col-md-6">
@@ -234,7 +238,11 @@
     <!-- Total -->
     <div class="mb-2">
         <label for="total" class="form-label" style="font-size: 0.9em;">per person</label>
+        <% if (tour.offerPrice) { %>
         <span class="total text-main" style="font-size: 1.1em; font-weight: bold;">AED<%= tour.offerPrice %></span>
+        <% } else { %>
+            <span class="total text-main" style="font-size: 1.1em; font-weight: bold;">AED<%= tour.actualPrice %></span>
+            <% } %>
     </div>
 
     <!-- Submit and Reset Buttons -->

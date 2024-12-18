@@ -147,7 +147,7 @@
                                                 <div class="icon-box flex-three">
                                                     <div class="icons flex-three">
                                                         <i class="icon-time-left"></i>
-                                                        <span><%= tour.hoursOfTrip %> hours</span>
+                                                        <span><%= tour.hoursOfTrip %> hour</span>
                                                     </div>
                                                     <div class="icons flex-three">
                                                         <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -161,8 +161,21 @@
                                                 </div>
                                                 <div class="flex-two">
                                                     <div class="price-box flex-three">
-                                                        <p>From <span class="price-sale">AED <%= tour.actualPrice %></span></p>
-                                                        <span class="price"><%= tour.tripTime.from %>-<%= tour.tripTime.to %></span>
+                                                        <p>From <span class="price-sale">AED 
+                                                            <%= tour?.offerPrice ? tour.offerPrice : tour.actualPrice %>
+                                                        </span></p>
+                                                        
+                                                        <span class="price">
+                                                            <i class="icon-time-left" style="color: #14B0C3;"></i>
+                                                            <% if (tour?.tourName === "Yellow Boat Tour Abu Dhabi before sunset" || tour?.tourName === "Yellow Boat Tour Abu Dhabi") { %>
+                                                                Anytime
+                                                            <% } else if (tour?.tourName === "Luxury Yacht Cruise Abu Dhabi") { %>
+                                                                Before Sunset
+                                                            <% } else { %>
+                                                                <%= tour.tripTime?.from || "N/A" %> - <%= tour.tripTime?.to || "N/A" %>
+                                                            <% } %>
+                                                        </span>
+                                                        
                                                     </div>
                                                     <span 
                                                         class="tag-listing" 
