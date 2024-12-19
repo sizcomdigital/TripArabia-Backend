@@ -241,7 +241,6 @@
     <!-- Modal Popup Bid -->
 
     <a id="scroll-top" class="button-go"></a>
-
     <%-include('../layouts/user/sidebar.ejs')%>
     <!-- Javascript -->
     <script src="/app/js/jquery.min.js"></script>
@@ -261,12 +260,9 @@ function setTourName(element) {
         // Set the value to the hidden input field in the modal
         document.getElementById('tourName').value = tourName;
     }
-
-
-
+    
         function sendToWhatsApp(event) {
             event.preventDefault();
-            
             const tourName = document.getElementById("tourName").value;
             const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
