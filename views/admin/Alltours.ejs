@@ -49,7 +49,9 @@
                 <li><p>Start Time</p></li>
                 <li><p>End Time</p></li>
                 <li><p>Status</p></li>
+               
                 <li><p>Action</p></li>
+                <li><p>bestseller</p></li>
             </ul>
             <ul id="tourList" class="booking-table-content mb-60">
                 <% tour.forEach(tour => { %>
@@ -90,9 +92,18 @@
                                 <i class="icon-Vector-17"></i>
                             </div>
                         </div>
+
+                        <button 
+                        class="date-gues mark-bestseller" 
+                        data-id="<%= tour._id %>" 
+                        aria-label="<%= tour.bestseller ? 'Mark as non-bestseller' : 'Mark as bestseller' %>">
+                          <%= tour.bestseller ? 'Non-Bestseller' : 'Bestseller' %>
+                      </button>
+                      
                     </li>
                 <% }); %>
             </ul>
+         
             
             <div class="row">
                 <div class="col-md-12">
@@ -351,6 +362,34 @@ function updateTourStatus(tourId, newStatus) {
 
 </script>
 
+<script>
+    document.querySelectorAll('.mark-bestseller').forEach(button => {
+        button.addEventListener('click', () => {
+            const tourId = button.getAttribute('data-id');
+    
+            fetch(`/admin/mark-bestseller/${tourId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Marked as bestseller successfully!');
+                    button.classList.toggle('active'); // Optional: Add a visual indicator
+                    location.reload(); // Refresh the page after success
+                } else {
+                    alert('Failed to mark as bestseller.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>

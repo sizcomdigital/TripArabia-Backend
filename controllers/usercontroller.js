@@ -7,6 +7,7 @@ module.exports = {
     userhome: async (req, res) => {
         try {
             const categories = await Category.find({}).limit(5);
+            const bestsellers = await Tour.find({ bestseller: true });
             const category = await Category.find({})
             // Map icons and delays for each category name
             const categoryDetails = categories.map((category, index) => {
@@ -40,7 +41,8 @@ module.exports = {
             });
             res.render("user/userHome", { categories: categoryDetails,
                 category,
-                activePage: "home" // Set the active page dynamically
+                activePage: "home", // Set the active page dynamically
+                bestsellers
              });
         } catch (error) {
             console.error("Error fetching categories:", error);

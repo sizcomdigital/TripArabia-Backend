@@ -155,10 +155,10 @@ module.exports = {
       },
     deleteCategory : async (req, res) => {
       
-      console.log(req.params);
+      
       
         const { id } = req.params;
-        console.log(id);
+        
         
         try {
           const deletedCategory = await Category.findByIdAndDelete(id);

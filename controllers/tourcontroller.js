@@ -5,6 +5,7 @@ const Blog = require("../models/blogmodel");
 const crypto = require("crypto");
 const Category = require("../models/categorymodel");
 const mongoose = require("mongoose");
+const { log } = require("console");
 
 module.exports = {
   addTour: async (req, res) => {
@@ -123,7 +124,7 @@ module.exports = {
 
 
    editTour : async (req, res) => {
-    console.log(req.body,"ssssssssssssssssssssssss");
+    
     
     const { id } = req.params;
   
@@ -248,7 +249,6 @@ module.exports = {
     }
   },
   addBlog: async (req, res) => {
-    console.log(req.body);
 
     const { blogName, description, miniDescription } = req.body;
 
@@ -348,7 +348,6 @@ module.exports = {
   // Delete a blog post
 
   deleteBlog: async (req, res) => {
-    console.log(req.params.id);
 
     const { id } = req.params;
 
@@ -515,5 +514,25 @@ if (tour.tripTime) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
     }
+},
+updatebestStatus: async(req,res)=>{
+  try {
+    const tourId = req.params.id;
+
+    // Find the tour and toggle the bestseller field
+    const tour = await Tour.findById(tourId);
+    if (!tour) {
+        return res.status(404).json({ success: false, message: 'Tour not found' });
+    }
+
+    tour.bestseller = !tour.bestseller;
+    await tour.save();
+
+    res.status(200).json({ success: true, bestseller: tour.bestseller });
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+}
+
 }
 };

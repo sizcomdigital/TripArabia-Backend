@@ -693,55 +693,58 @@
                             <div class="col-lg-12 relative on-week-swipper-wrap">
                                 <div class="swiper on-week-swipper overflow-hidden relative">
                                     <div class="swiper-wrapper">
+                                        <% bestsellers.forEach(tour => { %>
                                         <div class="swiper-slide">
                                             <div class="tour-listing">
                                                 <a href="#" class="tour-listing-image">
                                                     <div class="badge-top flex-two">
+                                                        
+                                                        <!-- Render the Featured badge only if the tour is featured -->
                                                         <span class="feature">Featured</span>
                                                         
-                                                       
                                                     </div>
-                                                    <img src="./assets/images/travel-list/20.png" alt="Image Listing">
-
+                                                    <img src="<%= tour.images[0] %>" alt="Image Listing">
                                                 </a>
                                                 <div class="tour-listing-content">
+                                                    <% if (tour.bestseller) { %>
+                                                    <!-- Render Bestseller tag only if the tour is marked as a bestseller -->
                                                     <span class="tag-listing">Bestseller</span>
-                                                   
-                                                    <h3 class="title-tour-list"><a href="#">Camel Trekking Tour</a>
-                                                    </h3>
-                                                   
+                                                    <% } %>
+                                                    <h3 class="title-tour-list"><a href="#"><%= tour.tourName %></a></h3>
                                                     <div class="icon-box flex-three">
                                                         <div class="icons flex-three">
                                                             <i class="icon-time-left"></i>
-                                                            <span>7 hours</span>
+                                                            <span><%= tour.hoursOfTrip %> Hours</span>
                                                         </div>
                                                         <div class="icons flex-three">
-                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z" 
+                                                                      stroke="currentColor" stroke-width="1.7" stroke-miterlimit="10" 
+                                                                      stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922" 
+                                                                      stroke="currentColor" stroke-width="1.7" stroke-miterlimit="10" 
+                                                                      stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor" stroke-width="1.7" 
+                                                                      stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor" stroke-width="1.7" 
+                                                                      stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
                                                             <span>per Person</span>
                                                         </div>
                                                     </div>
                                                     <div class="flex-two">
                                                         <div class="price-box flex-three">
-                                                            <p>From <span class="price-sale">AED 199</span></p>
-                                                            <span class="price">03:00PM - 09:00PM</span>
+                                                            <p>From 
+                                                                <span class="price-sale">
+                                                                    <% if (tour.offerPrice) { %>
+                                                                        <%= tour.offerPrice %>
+                                                                    <% } else { %>
+                                                                        <%= tour.actualPrice %>
+                                                                    <% } %>
+                                                                </span>
+                                                            </p>
+                                                            
+                                                            <span class="price"><%= tour.tripTime.from %> - <%= tour.tripTime.to %></span>
                                                         </div>
                                                         <div class="icon-bookmark">
                                                             <i class="icon-Vector-151"></i>
@@ -750,287 +753,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="tour-listing">
-                                                <a href="#" class="tour-listing-image">
-                                                    <div class="badge-top flex-two">
-                                                        <span class="feature">Featured</span>
-                                                        
-                                                    </div>
-                                                    <img src="./assets/images/travel-list/15.png" alt="Image Listing">
-
-                                                </a>
-                                                <div class="tour-listing-content">
-                                                    <span class="tag-listing">Bestseller</span>
-                                                  
-                                                    <h3 class="title-tour-list"><a href="#">Abu Dhabi City Tour with Dhow Cruise Dinner</a>
-                                                    </h3>
-                                                    
-                                                    <div class="icon-box flex-three">
-                                                        <div class="icons flex-three">
-                                                            <i class="icon-time-left"></i>
-                                                            <span>5 hours</span>
-                                                        </div>
-                                                        <div class="icons flex-three">
-                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                            <span>per Person</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-two">
-                                                        <div class="price-box flex-three">
-                                                            <p>From <span class="price-sale">AED 199</span></p>
-                                                            <span class="price">03:00PM - 09:00PM</span>
-                                                        </div>
-                                                        <div class="icon-bookmark">
-                                                            <i class="icon-Vector-151"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="tour-listing">
-                                                <a href="#" class="tour-listing-image">
-                                                    <div class="badge-top flex-two">
-                                                        <span class="feature">Featured</span>
-                                                        
-                                                    </div>
-                                                    <img src="./assets/images/travel-list/17.png" alt="Image Listing">
-
-                                                </a>
-                                                <div class="tour-listing-content">
-                                                    <span class="tag-listing">Bestseller</span>
-                                                  
-                                                    <h3 class="title-tour-list"><a href="#">Sunrise Desert Safari</a>
-                                                    </h3>
-                                                   
-                                                    <div class="icon-box flex-three">
-                                                        <div class="icons flex-three">
-                                                            <i class="icon-time-left"></i>
-                                                            <span>5 days</span>
-                                                        </div>
-                                                        <div class="icons flex-three">
-                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                            <span>per Person</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-two">
-                                                        <div class="price-box flex-three">
-                                                            <p>From <span class="price-sale">AED 199</span></p>
-                                                            <span class="price">03:00PM - 09:00PM</span>
-                                                        </div>
-                                                        <div class="icon-bookmark">
-                                                            <i class="icon-Vector-151"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="tour-listing">
-                                                <a href="#" class="tour-listing-image">
-                                                    <div class="badge-top flex-two">
-                                                        <span class="feature">Featured</span>
-                                                        
-                                                    </div>
-                                                    <img src="./assets/images/travel-list/18.png" alt="Image Listing">
-
-                                                </a>
-                                                <div class="tour-listing-content">
-                                                    <span class="tag-listing">Bestseller</span>
-                                                 
-                                                    <h3 class="title-tour-list"><a href="#">Over Night Desert Safari</a>
-                                                    </h3>
-                                                    
-                                                    <div class="icon-box flex-three">
-                                                        <div class="icons flex-three">
-                                                            <i class="icon-time-left"></i>
-                                                            <span>7 hours</span>
-                                                        </div>
-                                                        <div class="icons flex-three">
-                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                            <span>per Person</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-two">
-                                                        <div class="price-box flex-three">
-                                                            <p>From <span class="price-sale">AED 199</span></p>
-                                                            <span class="price">03:00PM - 09:00PM</span>
-                                                        </div>
-                                                        <div class="icon-bookmark">
-                                                            <i class="icon-Vector-151"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="tour-listing">
-                                                <a href="#" class="tour-listing-image">
-                                                    <div class="badge-top flex-two">
-                                                        <span class="feature">Featured</span>
-                                                        
-                                                    </div>
-                                                    <img src="./assets/images/travel-list/12.jpg" alt="Image Listing">
-
-                                                </a>
-                                                <div class="tour-listing-content">
-                                                    <span class="tag-listing">Bestseller</span>
-                                                 
-                                                    <h3 class="title-tour-list"><a href="#">Dhow Cruise Lunch Abu Dhabi</a>
-                                                    </h3>
-                                                    
-                                                    <div class="icon-box flex-three">
-                                                        <div class="icons flex-three">
-                                                            <i class="icon-time-left"></i>
-                                                            <span>6 hours</span>
-                                                        </div>
-                                                        <div class="icons flex-three">
-                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                            <span>per Person</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-two">
-                                                        <div class="price-box flex-three">
-                                                            <p>From <span class="price-sale">AED 199</span></p>
-                                                            <span class="price">03:00PM - 09:00PM</span>
-                                                        </div>
-                                                        <div class="icon-bookmark">
-                                                            <i class="icon-Vector-151"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="tour-listing">
-                                                <a href="#" class="tour-listing-image">
-                                                    <div class="badge-top flex-two">
-                                                        <span class="feature">Featured</span>
-                                                        
-                                                    </div>
-                                                    <img src="./assets/images/travel-list/20.png" alt="Image Listing">
-
-                                                </a>
-                                                <div class="tour-listing-content">
-                                                    <span class="tag-listing">Bestseller</span>
-                                                   
-                                                    <h3 class="title-tour-list"><a href="#">Morning Desert Safari</a>
-                                                    </h3>
-                                                    
-                                                    <div class="icon-box flex-three">
-                                                        <div class="icons flex-three">
-                                                            <i class="icon-time-left"></i>
-                                                            <span>7 hours</span>
-                                                        </div>
-                                                        <div class="icons flex-three">
-                                                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M4.34766 4.79761C4.34766 2.94013 5.85346 1.43433 7.71094 1.43433C9.56841 1.43433 11.0742 2.94013 11.0742 4.79761C11.0742 6.65508 9.56841 8.16089 7.71094 8.16089C5.85346 8.16089 4.34766 6.65508 4.34766 4.79761Z"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path
-                                                                    d="M9.5977 15.1797H2.46098C1.34827 15.1797 0.558268 14.0954 0.898984 13.0362C1.80408 10.222 4.57804 8.18566 7.69301 8.18566C9.17897 8.18566 10.5566 8.64906 11.6895 9.43922"
-                                                                    stroke="currentColor" stroke-width="1.7"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round" />
-                                                                <path d="M17.1035 15.1797V9.02734" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path d="M20.1797 12.1035H14.0273" stroke="currentColor"
-                                                                    stroke-width="1.7" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </svg>
-                                                            <span>per Person</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-two">
-                                                        <div class="price-box flex-three">
-                                                            <p>From <span class="price-sale">AED 199</span></p>
-                                                            <span class="price">03:00PM - 09:00PM</span>
-                                                        </div>
-                                                        <div class="icon-bookmark">
-                                                            <i class="icon-Vector-151"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <% }) %>
                                     </div>
+                                    
 
                                 </div>
                                 <div class="swiper-button-next"></div>

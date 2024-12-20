@@ -66,6 +66,10 @@ const tourSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
   },
+  bestseller: {
+    type: Boolean,
+    default:false,
+  },
   status: {
     type: Boolean,
     default:true,

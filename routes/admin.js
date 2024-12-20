@@ -21,6 +21,9 @@ router.delete("/deletecategory/:id",verifyToken,admincontroller.deleteCategory);
 //active and inactive
 router.put('/toursactive/:id', verifyToken, tourcontroller.updateStatus);
 
+
+
+
 // tour details
 router.post('/tours',verifyToken, upload.array('images', 5), tourcontroller.addTour); // 'images' is the field name in the form
  //get edit tour
@@ -29,6 +32,9 @@ router.get('/tours/:id',verifyToken,tourcontroller.geteditTour);
 router.put('/tours/:id',verifyToken,upload.array('images', 5),tourcontroller.editTour);
 // Delete a tour
 router.delete('/tours/:id',verifyToken,tourcontroller.deleteTour);
+//make bestseller
+router.put('/mark-bestseller/:id', verifyToken, tourcontroller.updatebestStatus);
+
 // Get all tours
 router.get('/tours',verifyToken,tourcontroller.getAllTours);
 router.get("/alltour",verifyToken,admincontroller.alltours);
