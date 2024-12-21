@@ -78,23 +78,6 @@
                                                 <li class="<%= activePage === 'home' ? 'active' : '' %>">
                                                     <a href="/" style="<%= activePage === 'home' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Home</a>
                                                 </li>
-                                                
-                                                <li class="dropdown2" class="<%= activePage === 'Tours' ? 'active' : '' %>">
-                                                    <a href="" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
-                                                    <ul>
-                                                        <% category.forEach(category => { %>
-                                                            <li><a href="/category?id=<%= category._id %>"><%= category.name %></a></li>
-                                                            <% }); %>
-                                                    </ul>
-                                                    
-                                                </li>
-                                                <li class="<%= activePage === 'service' ? 'active' : '' %>">
-                                                    <a href="/service" style="<%= activePage === 'service' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Services</a>                                                </li>
-                                                <li class="<%= activePage === 'blog' ? 'active' : '' %>">
-
-                                                    <a href="/blog" style="<%= activePage === 'blog' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Blog</a>                                                </li>
-
-                                                </li>
                                                 <li class="<%= activePage === 'privacypolicy' || activePage === 'termscondition' || activePage === 'about' ? 'dropdown2 current' : 'dropdown2' %>">
                                                     <a href="#">Abouts</a>
                                                     <ul>
@@ -113,6 +96,23 @@
                                                            </li>
                                                     </ul>
                                                 </li>
+                                                <li class="dropdown2" class="<%= activePage === 'Tours' ? 'active' : '' %>">
+                                                    <a href="" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
+                                                    <ul>
+                                                        <% category.forEach(category => { %>
+                                                            <li><a href="/category?id=<%= category._id %>"><%= category.name %></a></li>
+                                                            <% }); %>
+                                                    </ul>
+                                                    
+                                                </li>
+                                                <li class="<%= activePage === 'service' ? 'active' : '' %>">
+                                                    <a href="/service" style="<%= activePage === 'service' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Services</a>                                                </li>
+                                                <li class="<%= activePage === 'blog' ? 'active' : '' %>">
+
+                                                    <a href="/blog" style="<%= activePage === 'blog' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Blog</a>                                                </li>
+
+                                                </li>
+                                               
                                                 <li>
                                                     <a href="/contact" style="<%= activePage === 'contact' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Contact Us</a>                                                </li>
                                                 </li>
