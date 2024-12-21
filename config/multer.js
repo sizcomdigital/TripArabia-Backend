@@ -3,9 +3,9 @@ const cloudinary = require('cloudinary').v2;
 const path = require('path');
 
 cloudinary.config({
-    cloud_name: 'dyv0lsr1o',
-    api_key: '156871773169173',
-    api_secret: 'vjZ2y18JFl-fazohE71oP6p777E',
+    cloud_name: process.env.CLOUDNAME,
+    api_key: process.env.API_KEY,
+    api_secret:process.env.API_SECRET,
   })
   
   // Multer setup to save files locally
