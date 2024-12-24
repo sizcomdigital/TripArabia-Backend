@@ -121,10 +121,10 @@
                                         </svg>
                                     </div>
                                     <span>Mail Adress</span>
-                                    <p class="des">info@trip-arabia.com
+                                    <a class="des"  href="mailto:info@trip-arabia.com">info@trip-arabia.com 
                                         <br>
                                         <br>
-                                    </p>
+                                    </a>
                                 </div>
 
                             </div>
@@ -216,24 +216,30 @@
     <script src="app/js/main.js"></script>
     <script>
         document.getElementById('form-contact-us').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent form from submitting normally
+            e.preventDefault(); // Prevent the form's default submission behavior
     
             // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+    
+            // Validate the input fields (optional but recommended)
+            if (!name || !email || !message) {
+                alert('Please fill out all fields before submitting.');
+                return;
+            }
     
             // Define the WhatsApp message
             const whatsappMessage = `Hello! I am ${name}. My email is ${email}. Here is my message: ${message}`;
     
             // Set your WhatsApp number (use international format without "+" or special characters)
-            const whatsappNumber = "+971545800101";
+            const whatsappNumber = "971545800101"; // Correct format for WhatsApp API
     
             // Open WhatsApp with the message
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
         });
     </script>
-
+    
 </body>
 
 </html>

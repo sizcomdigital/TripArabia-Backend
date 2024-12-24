@@ -330,7 +330,8 @@
     const children = document.getElementById("children").value;
     const date = document.getElementById("date").value;
     const tourName = "<%= tour.tourName %>";
-    const offerPrice = "<%= tour.offerPrice %>";
+    const offerPrice = "<%= tour.offerPrice ? tour.offerPrice : tour.actualPrice %>";
+
 
     // Validate required fields
     if (!name || !email || !phone || !adults || !children || !date ) {
