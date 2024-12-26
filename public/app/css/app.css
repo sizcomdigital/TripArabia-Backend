@@ -10797,6 +10797,9 @@ body .dribbble img {
   .widget-feature .image-feature-wrap {
     padding-right: 0px;
   }
+  .main-header .logo-box .logo img{
+    width: 107px; /* Adjust width for smaller screens */
+  }
   .about-us-h2 .content-about-us .pl-about {
     padding-left: 0px;
   }
@@ -11605,6 +11608,7 @@ body .dribbble img {
   .travel-video .mask-video {
     display: none;
   }
+
   .about-us .col-lg-12.flex {
     flex-wrap: wrap;
   }
