@@ -139,7 +139,7 @@
                                             </a>
                                             <div class="tour-listing-content">
                                                 <h3 class="title-tour-list">
-                                                    <a href="#"><%= tour.tourName %></a>
+                                                    <a href="/tour?Tourid=<%= tour._id %>"><%= tour.tourName %></a>
                                                 </h3>
                                                 <% if (tour.status === false) { %>
                                                     <p class="text-danger" style="font-weight: bold;">Currently Unavailable</p>

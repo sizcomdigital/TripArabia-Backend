@@ -318,29 +318,28 @@
     <script src="app/js/shortcodes.js"></script>
     <script src="app/js/main.js"></script>
 
-   <script>
-    function sendToWhatsApp(event) {
-    event.preventDefault(); // Prevent the form from submitting
-    
-    // Collect form data
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const adults = document.getElementById("adults").value;
-    const children = document.getElementById("children").value;
-    const date = document.getElementById("date").value;
-    const tourName = "<%= tour.tourName %>";
-    const offerPrice = "<%= tour.offerPrice ? tour.offerPrice : tour.actualPrice %>";
-
-
-    // Validate required fields
-    if (!name || !email || !phone || !adults || !children || !date ) {
-        alert("Please fill all the fields.");
-        return;
-    }
-
-    // Format message
-    const message = `
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            
+            // Collect form data
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const adults = document.getElementById("adults").value.trim();
+            const children = document.getElementById("children").value.trim();
+            const date = document.getElementById("date").value.trim();
+            const tourName = "<%= tour.tourName %>"; 
+            const offerPrice = "<%= tour.offerPrice ? tour.offerPrice : tour.actualPrice %>"; 
+            
+            // Validate required fields
+            if (!name || !email || !phone || !adults || !children || !date) {
+                alert("Please fill all the fields.");
+                return;
+            }
+        
+            // Format message
+            const message = `
         Booking Request:
         - Tour: ${tourName}
         - Name: ${name}
@@ -350,18 +349,18 @@
         - Children: ${children}
         - Date: ${date}
         - Price per person: AED${offerPrice}
-    `.trim();
-
-    const whatsappNumber = "+971545800101"; // Replace with your WhatsApp number in international format
-
-    // WhatsApp URL
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    // Redirect to WhatsApp
-    window.open(url, "_blank");
-}
-
-   </script>
+        `.trim();
+        
+            const whatsappNumber = "+971545800101"; // Replace with your WhatsApp number
+        
+            // WhatsApp URL
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        
+            // Redirect to WhatsApp
+            window.open(url, "_blank");
+        }
+        </script>
+        
 
 </body>
 
