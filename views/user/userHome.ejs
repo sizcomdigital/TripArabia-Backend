@@ -672,7 +672,7 @@
                                         <% bestsellers.forEach(tour => { %>
                                         <div class="swiper-slide">
                                             <div class="tour-listing">
-                                                <a href="#" class="tour-listing-image">
+                                                <a href="/tour?Tourid=<%= tour._id %>" class="tour-listing-image">
                                                     <div class="badge-top flex-two">
                                                         
                                                         <!-- Render the Featured badge only if the tour is featured -->
@@ -1049,7 +1049,7 @@
                                                 fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <div class="number-counter number" data-to="100" data-speed="2000"
+                                    <div class="number-counter number" data-to="50" data-speed="2000"
                                         data-waypoint-active="yes">50</div>
                                     <span class="line"></span>
                                     <p class="title-counter">Awards<br>Winning</p>
