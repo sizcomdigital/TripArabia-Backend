@@ -70,14 +70,14 @@
         });
 
         //Disable dropdown parent link
-        $('.navigation li.dropdown2 > a').on('click', function (e) {
-            e.preventDefault();
-        });
+        // $('.navigation li.dropdown2 > a').on('click', function (e) {
+        //     e.preventDefault();
+        // });
 
         //Disable dropdown parent link
-        $('.main-header .navigation li.dropdown2 > a,.hidden-bar .side-menu li.dropdown2 > a').on('click', function (e) {
-            e.preventDefault();
-        });
+        // $('.main-header .navigation li.dropdown2 > a,.hidden-bar .side-menu li.dropdown2 > a').on('click', function (e) {
+        //     e.preventDefault();
+        // });
 
         $('.price-block .features .arrow').on('click', function (e) {
             $(e.target.offsetParent.offsetParent.offsetParent).toggleClass('active-show-hidden')

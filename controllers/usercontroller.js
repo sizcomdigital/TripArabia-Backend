@@ -9,6 +9,21 @@ module.exports = {
             const categories = await Category.find({}).limit(5);
             const bestsellers = await Tour.find({ bestseller: true });
             const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
+
+
             // Map icons and delays for each category name
             const categoryDetails = categories.map((category, index) => {
                 let iconClass = "";
@@ -42,7 +57,8 @@ module.exports = {
             res.render("user/userHome", { categories: categoryDetails,
                 category,
                 activePage: "home", // Set the active page dynamically
-                bestsellers
+                bestsellers,
+                categoryDetailss
              });
         } catch (error) {
             console.error("Error fetching categories:", error);
@@ -51,9 +67,23 @@ module.exports = {
     },  
     getservicepage: async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
             res.render("user/service", {
                 category,
+                categoryDetailss,
                 activePage: "service" // Set the active page dynamically
             });
         } catch (error) {
@@ -63,9 +93,23 @@ module.exports = {
     },
     getcontactpage: async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
             res.render("user/contact", {
                 category,
+                categoryDetailss,
                 activePage: "contact" // Set the active page dynamically
             });
         } catch (error) {
@@ -75,9 +119,23 @@ module.exports = {
     },
     getprivacypolicypage: async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
             res.render("user/privacypolicy", {
                 category,
+                categoryDetailss,
                 activePage: "privacypolicy" // Set the active page dynamically
             });
         } catch (error) {
@@ -87,9 +145,23 @@ module.exports = {
     },
     gettermsconditionpage: async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
             res.render("user/termscondition", {
                 category,
+                categoryDetailss,
                 activePage: "termscondition" // Set the active page dynamically
             });
         } catch (error) {
@@ -99,9 +171,23 @@ module.exports = {
     },
     getaboutpage: async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
             res.render("user/about", {
                 category,
+                categoryDetailss,
                 activePage: "about" // Set the active page dynamically
             });
         } catch (error) {
@@ -111,7 +197,20 @@ module.exports = {
     },
     getCategoryWiseTours: async (req, res) => {
         const categories = await Category.find({}).limit();
-    
+        const category = await Category.find({})
+
+
+        // Fetch tours for each category
+        const categoryDetailss = await Promise.all(category.map(async (category) => {
+            // Fetch tours associated with the current category
+            const tours = await Tour.find({ category: category._id });
+        
+            // Add tours data to category
+            return {
+                ...category._doc, // Spread original category fields
+                tours, // Add tours to the category
+            };
+        }));
         const { id } = req.query; // Get id from the query string
         
         try {
@@ -130,6 +229,7 @@ module.exports = {
             res.render("user/tours", {
                 tours,
                 category:categories,
+                categoryDetailss,
                 categoryName: category.name, // Pass the category name
                 activePage: "Tours" // Set the active page dynamically
             });
@@ -142,7 +242,20 @@ module.exports = {
     
         try {
             // Retrieve all categories for rendering
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
     
             // Find the specific tour by ID
             const tour = await Tour.findById(Tourid).populate("category", "name").exec();
@@ -156,6 +269,7 @@ module.exports = {
             res.render("user/tourDetails", {
                 tour,
                 category,
+                categoryDetailss,
                 activePage: "Tours", // Set the active page dynamically
             });
         } catch (error) {
@@ -165,10 +279,24 @@ module.exports = {
     },
     getblogpage: async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
             const blog = await Blog.find()
             res.render("user/blog", {
                 category,
+                categoryDetailss,
                 blog,
                 activePage: "blog" // Set the active page dynamically
             });
@@ -179,7 +307,20 @@ module.exports = {
     },
     getBlogdetailsPage : async (req, res) => {
         try {
-            const category = await Category.find({});
+            const category = await Category.find({})
+
+
+            // Fetch tours for each category
+            const categoryDetailss = await Promise.all(category.map(async (category) => {
+                // Fetch tours associated with the current category
+                const tours = await Tour.find({ category: category._id });
+            
+                // Add tours data to category
+                return {
+                    ...category._doc, // Spread original category fields
+                    tours, // Add tours to the category
+                };
+            }));
             const blogs = await Blog.find()
 
             const { blogId } = req.query;
@@ -197,6 +338,7 @@ module.exports = {
             res.render('user/blogdetails', { blog,
                 blogs,
                 category,
+                categoryDetailss,
                 activePage: "blog" // Set the active page dynamically
             });
         } catch (error) {

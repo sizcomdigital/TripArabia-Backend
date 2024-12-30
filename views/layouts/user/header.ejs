@@ -76,7 +76,7 @@
                                             id="navbarSupportedContent">
                                             <ul class="navigation clearfix">
                                                 <li class="<%= activePage === 'home' ? 'active' : '' %>">
-                                                    <a href="/" style="<%= activePage === 'home' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Home</a>
+                                            <a href="/" style="<%= activePage === 'home' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Home</a>
                                                 </li>
                                                 <li class="<%= activePage === 'privacypolicy' || activePage === 'termscondition' || activePage === 'about' ? 'dropdown2 current' : 'dropdown2' %>">
                                                     <a href="#">About Us</a>
@@ -96,13 +96,38 @@
                                                            </li>
                                                     </ul>
                                                 </li>
-                                                <li class="dropdown2" class="<%= activePage === 'Tours' ? 'active' : '' %>">
-                                                    <a href="" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
+                                                <li class="dropdown2 d-block d-md-none" class="<%= activePage === 'Tours' ? 'active' : '' %>">
+                                                    <a href="" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">category</a>
                                                     <ul>
                                                         <% category.forEach(category => { %>
                                                             <li><a href="/category?id=<%= category._id %>"><%= category.name %></a></li>
                                                             <% }); %>
                                                     </ul>
+                                                    
+
+                                                    <li class="dropdown2" class="<%= activePage === 'Tours' ? 'active' : '' %>">
+                                                        <a href="#" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
+                                                        <ul>
+                                                            <!-- Loop through categories -->
+                                                            <% categoryDetailss.forEach((category) => { %>
+                                                                <li class="dropdown2">
+                                                                    <!-- Link to the category -->
+                                                                    <a href="/category?id=<%= category._id %>"><%= category.name %></a>
+                                                                    <ul>
+                                                                        <!-- Loop through tours for each category -->
+                                                                        <% category.tours.forEach((tour) => { %>
+                                                                            <li>
+                                                                                <!-- Link to the specific tour -->
+                                                                                <a href="/tour?Tourid=<%= tour._id %>"><%= tour.tourName %></a>
+                                                                            </li>
+                                                                        <% }); %>
+                                                                    </ul>
+                                                                </li>
+                                                            <% }); %>
+                                                        </ul>
+                                                    </li>
+                                                    
+                                                    
                                                     
                                                 </li>
                                                 <li class="<%= activePage === 'service' ? 'active' : '' %>">
