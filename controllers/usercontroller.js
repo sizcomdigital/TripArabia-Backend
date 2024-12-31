@@ -1,6 +1,7 @@
 const Category = require('../models/categorymodel')
 const Tour = require("../models/tourmodel");
 const Blog = require("../models/blogmodel");
+const mongoose = require('mongoose');
 
 
 module.exports = {
@@ -196,47 +197,65 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
         }
     },
     getCategoryWiseTours: async (req, res) => {
-        const categories = await Category.find({}).limit();
-        const category = await Category.find({})
-
-
-        // Fetch tours for each category
-        const categoryDetailss = await Promise.all(category.map(async (category) => {
-            // Fetch tours associated with the current category
-            const tours = await Tour.find({ category: category._id });
-        
-            // Add tours data to category
-            return {
-                ...category._doc, // Spread original category fields
-                tours, // Add tours to the category
-            };
-        }));
-        const { id } = req.query; // Get id from the query string
-        
         try {
+            const { id, page = 1 } = req.query; // Get category ID and page number from query string
+    
+            // Validate id
+            if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ message: "Invalid or missing category ID" });
+            }
+    
+            const limit = 8; // Number of tours per page
+            const skip = (page - 1) * limit; // Calculate documents to skip
+    
+            // Fetch all categories
+            const categories = await Category.find({}).limit();
+            const category = await Category.find({});
+    
+            // Fetch tours for each category
+            const categoryDetailss = await Promise.all(category.map(async (category) => {
+                const tours = await Tour.find({ category: category._id });
+                return {
+                    ...category._doc, // Spread original category fields
+                    tours, // Add tours to the category
+                };
+            }));
+    
             // Find the category by its _id
-            const category = await Category.findById(id);
-            if (!category) {
+            const categoryData = await Category.findById(id);
+            if (!categoryData) {
                 return res.status(404).json({ message: "Category not found" });
             }
     
-    
-            // Find tours that match the specified category
+            // Find tours that match the specified category with pagination
             const tours = await Tour.find({ category: id })
-                .populate("category", "name") // Populating the category to include its name
+                .populate("category", "name") // Populate the category to include its name
+                .skip(skip) // Skip documents for pagination
+                .limit(limit) // Limit the number of documents
                 .exec();
+    
+            // Total number of tours for the category
+            const totalTours = await Tour.countDocuments({ category: id });
+    
+            // Total pages calculation
+            const totalPages = Math.ceil(totalTours / limit);
     
             res.render("user/tours", {
                 tours,
-                category:categories,
+                category: categories,
                 categoryDetailss,
-                categoryName: category.name, // Pass the category name
-                activePage: "Tours" // Set the active page dynamically
+                categoryName: categoryData.name, // Pass the category name
+                activePage: "Tours", // Set the active page dynamically
+                currentPage: parseInt(page), // Current page
+                totalPages, // Total pages
+                categoryId: id // Pass the category ID to the frontend
             });
         } catch (error) {
             res.status(400).json({ message: "Error fetching tours", error: error.message });
         }
-    },
+    }
+    
+    ,
     getpertour: async (req, res) => {
         const { Tourid } = req.query; // Extract Tourid from the query
     

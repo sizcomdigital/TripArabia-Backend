@@ -37,7 +37,6 @@ router.get('/tours',verifyToken,tourcontroller.getAllTours);
 router.get("/alltour",verifyToken,admincontroller.alltours);
 router.get("/addtour",verifyToken,admincontroller.addtour);
 
-
 router.delete('/img/:id',verifyToken,tourcontroller.deletePerImage)
 
 // categorywise
