@@ -31,6 +31,8 @@ router.put('/tours/:id',verifyToken,upload.array('images', 5),tourcontroller.edi
 router.delete('/tours/:id',verifyToken,tourcontroller.deleteTour);
 //make bestseller
 router.put('/mark-bestseller/:id', verifyToken, tourcontroller.updatebestStatus);
+// offer tour
+router.put('/make-as-offer/:id', verifyToken, tourcontroller.makeAsOffer);
 
 // Get all tours
 router.get('/tours',verifyToken,tourcontroller.getAllTours);

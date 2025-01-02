@@ -52,6 +52,7 @@
                
                 <li><p>Action</p></li>
                 <li><p>bestseller</p></li>
+                <li><p>Offer Tour</p></li>
             </ul>
             <ul id="tourList" class="booking-table-content mb-60">
                 <% tour.forEach(tour => { %>
@@ -99,6 +100,13 @@
                         aria-label="<%= tour.bestseller ? 'Mark as non-bestseller' : 'Mark as bestseller' %>">
                           <%= tour.bestseller ? 'Non-Bestseller' : 'Bestseller' %>
                       </button>
+                      
+                        <button style="margin: 8px; font-weight: 100;"
+                          class="date-gues toggle-offer"
+                          data-id="<%= tour._id %>" 
+                          aria-label="<%= tour.offer ? 'Remove from offer' : 'Mark as offer' %>">
+                          <%= tour.offer ? 'Remove Offer' : 'Offer Tour' %>
+                        </button>
                       
                     </li>
                 <% }); %>
@@ -287,6 +295,7 @@ function updateTourStatus(tourId, newStatus) {
     .then(data => {
         if (data.message === 'Tour status updated') {
             alert(`Tour status has been updated to ${newStatus ? 'Active' : 'Inactive'}.`);
+            location.reload()
         }
     })
     .catch(error => {
@@ -390,6 +399,56 @@ function updateTourStatus(tourId, newStatus) {
         });
     });
     </script>
+
+
+<script>
+
+    // Attach event listener to all toggle-offer buttons
+document.querySelectorAll('.toggle-offer').forEach(button => {
+    button.addEventListener('click', function () {
+        const tourId = this.dataset.id;
+
+        fetch(`/admin/make-as-offer/${tourId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `Tour has been ${data.offer ? 'marked as an offer' : 'removed from offer'}.`,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+
+                // Update button text and aria-label dynamically
+                this.textContent = data.offer ? 'Remove Offer' : 'Offer Tour';
+                this.setAttribute('aria-label', data.offer ? 'Remove from offer' : 'Mark as offer');
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message || 'Failed to update offer status.',
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error toggling offer status:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An error occurred. Please try again later.',
+            });
+        });
+    });
+});
+
+</script>
+
 </body>
 
 </html>

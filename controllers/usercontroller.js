@@ -66,6 +66,34 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
             res.status(500).send("Internal Server Error");
         }
     },  
+    getofferpage: async (req, res) => {
+        try {
+            const Offertours = await Tour.find({ offer: true  });
+
+            const category = await Category.find({})
+// Fetch tours for each category
+const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+}));
+            res.render("user/offerTour", {
+                Offertours,
+                category,
+                categoryDetailss,
+                activePage: "offer" // Set the active page dynamically
+            });
+        } catch (error) {
+            console.error("Error fetching service page:", error);
+            res.status(400).json({ message: "Error fetching service page", error: error.message });
+        }
+    },
+
     getservicepage: async (req, res) => {
         try {
             const category = await Category.find({})

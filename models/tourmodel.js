@@ -73,7 +73,9 @@ const tourSchema = new mongoose.Schema({
   status: {
     type: Boolean,
     default:true,
-  }
+  },
+  // Add the offer field
+  offer: { type: Boolean, default: false }, // Default to false
 });
 
 // Pre-save middleware to set updatedAt

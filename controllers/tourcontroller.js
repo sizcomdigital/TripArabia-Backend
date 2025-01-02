@@ -47,6 +47,7 @@ module.exports = {
 
       from = convertTo12HourFormat(from);
       to = convertTo12HourFormat(to);
+console.log(tripTime);
 
       // Validate time format using regex for 12-hour format
       const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM)$/i;
@@ -122,10 +123,7 @@ module.exports = {
     }
   },
 
-
-   editTour : async (req, res) => {
-    
-    
+  editTour: async (req, res) => {
     const { id } = req.params;
   
     try {
@@ -136,39 +134,68 @@ module.exports = {
       }
   
       // Prepare the updated data from the request body
-      const updatedData = { 
+      const updatedData = {
         ...req.body,
         updatedAt: Date.now(),
       };
   
       // Convert fields like included, excluded, and tourHighlights from comma-separated strings to arrays
-      if (updatedData.included && typeof updatedData.included === 'string') {
-        updatedData.included = updatedData.included.split(',').map(item => item.trim());
+      if (updatedData.included && typeof updatedData.included === "string") {
+        updatedData.included = updatedData.included.split(",").map(item => item.trim());
       }
   
-      if (updatedData.excluded && typeof updatedData.excluded === 'string') {
-        updatedData.excluded = updatedData.excluded.split(',').map(item => item.trim());
+      if (updatedData.excluded && typeof updatedData.excluded === "string") {
+        updatedData.excluded = updatedData.excluded.split(",").map(item => item.trim());
       }
   
-      if (updatedData.tourHighlights && typeof updatedData.tourHighlights === 'string') {
-        updatedData.tourHighlights = updatedData.tourHighlights.split(',').map(item => item.trim());
+      if (updatedData.tourHighlights && typeof updatedData.tourHighlights === "string") {
+        updatedData.tourHighlights = updatedData.tourHighlights.split(",").map(item => item.trim());
       }
-
+  
+      // Handle tripTime conversion to 12-hour format
+      if (updatedData.tripTime) {
+        let parsedTripTime =
+          typeof updatedData.tripTime === "object" && updatedData.tripTime !== null
+            ? updatedData.tripTime
+            : JSON.parse(updatedData.tripTime || "{}");
+  
+        let { from, to } = parsedTripTime;
+  
+        const convertTo12HourFormat = (time24) => {
+          let [hours, minutes] = time24.split(":");
+          hours = parseInt(hours, 10);
+          let period = hours >= 12 ? "PM" : "AM";
+          if (hours > 12) hours -= 12;
+          if (hours === 0) hours = 12; // Midnight edge case
+          return `${hours}:${minutes} ${period}`;
+        };
+  
+        from = convertTo12HourFormat(from);
+        to = convertTo12HourFormat(to);
+  
+        // Validate time format using regex for 12-hour format
+        const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM)$/i;
+        if (!timeRegex.test(from) || !timeRegex.test(to)) {
+          return res.status(400).json({ message: "Invalid time format. Use 8:00 AM format." });
+        }
+  
+        // Update the tripTime field
+        updatedData.tripTime = { from, to };
+      }
+ 
+  
       // Handle image uploads to Cloudinary
       const localImagePaths = [];
-      const cloudinaryImageUrls=[];
+      const cloudinaryImageUrls = [];
       if (req.files && req.files.length > 0) {
         for (const file of req.files) {
           // Save local paths temporarily (if needed for deletion or backup)
           localImagePaths.push(file.path);
   
           // Upload the file to Cloudinary
-          const cloudinaryResponse = await cloudinary.uploader.upload(
-            file.path,
-            {
-              folder: "tour", // Optional: Upload to 'tour' folder in Cloudinary
-            }
-          );
+          const cloudinaryResponse = await cloudinary.uploader.upload(file.path, {
+            folder: "tour", // Optional: Upload to 'tour' folder in Cloudinary
+          });
   
           // Push the Cloudinary URL to the list of uploaded image URLs
           cloudinaryImageUrls.push(cloudinaryResponse.secure_url);
@@ -186,16 +213,12 @@ module.exports = {
   
       // Return success response with the updated tour data
       return res.status(200).json({ message: "Tour updated successfully", tour: updatedTour });
-  
     } catch (error) {
       // Handle any errors during the update process
       console.error(error);
       return res.status(400).json({ message: "Error updating tour", error: error.message });
     }
-  }
-  ,
-
-
+  },
 
   deleteTour: async (req, res) => {
     const { id } = req.params;
@@ -534,5 +557,24 @@ updatebestStatus: async(req,res)=>{
     res.status(500).json({ success: false, message: 'Internal server error' });
 }
 
+},
+makeAsOffer: async (req, res) => {
+  try {
+    const tourId = req.params.id;
+
+    // Find the tour and toggle the offer field
+    const tour = await Tour.findById(tourId);
+    if (!tour) {
+      return res.status(404).json({ success: false, message: "Tour not found" });
+    }
+
+    tour.offer = !tour.offer;
+    await tour.save();
+
+    res.status(200).json({ success: true, offer: tour.offer });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 }
 };

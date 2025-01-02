@@ -6,6 +6,7 @@ const usercontroller = require('../controllers/usercontroller')
 // static files
 router.get("/",usercontroller.userhome);
 router.get('/service',usercontroller.getservicepage)
+router.get('/offer',usercontroller.getofferpage)
 router.get('/aboutus',usercontroller.getaboutpage)
 router.get('/search',usercontroller.searchtour)
 
