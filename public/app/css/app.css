@@ -1344,7 +1344,7 @@
 /*----------------------breadcumb--------------------*/
 .breadcumb-section {
   padding: 137px 0px 135px 0px;
-  background-image: url(../../assets/images/page/breakcrumb.png);
+  background-image: url(../../assets/images/page/Tickets.png);
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
@@ -3500,8 +3500,8 @@
 
 /*----------------------archieve tour--------------------*/
 .archieve-tour {
-  padding-top: 120px;
-  padding-bottom: 105px;
+  padding-top: 60px;
+  padding-bottom: 69px;
 }
 .archieve-tour .tf-my-listing {
   border: 1px solid #EDEEEE;

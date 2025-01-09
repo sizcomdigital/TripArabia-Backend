@@ -281,9 +281,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
         } catch (error) {
             res.status(400).json({ message: "Error fetching tours", error: error.message });
         }
-    }
-    
-    ,
+    },
     getpertour: async (req, res) => {
         const { Tourid } = req.query; // Extract Tourid from the query
     
@@ -416,5 +414,29 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
             console.error('Error fetching tours:', error);
             res.status(500).send('Error fetching tours');
         }
-    }  
+    },
+    ticketpge: async (req,res)=>{
+        try {
+            const category = await Category.find({})
+    // Fetch tours for each category
+    const categoryDetailss = await Promise.all(category.map(async (category) => {
+    // Fetch tours associated with the current category
+    const tours = await Tour.find({ category: category._id });
+    
+    // Add tours data to category
+    return {
+        ...category._doc, // Spread original category fields
+        tours, // Add tours to the category
+    };
+    }));
+            res.render("user/tickets", {
+                category,
+                categoryDetailss,
+                activePage: "Tickets" // Set the active page dynamically
+            });
+        } catch (error) {
+            console.error("Error fetching Tickets page:", error);
+            res.status(400).json({ message: "Error fetching Tickets page", error: error.message });
+        }
+    }
 }

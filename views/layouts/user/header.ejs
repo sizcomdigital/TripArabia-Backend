@@ -4,6 +4,22 @@
     color: #26b7bc;
     font-weight: bold;
 }
+/* Make the tour list scrollable */
+.tour-list {
+  max-height: 200px;  /* Adjust this value to set the maximum height */
+  overflow-y: auto;   /* Enables vertical scrolling */
+  padding-right: 5px; /* Optional: adds space for the scrollbar */
+}
+
+/* Optional: Style the list items for a clean look */
+.tour-list li {
+  padding: 5px 0; /* Adds spacing between items */
+}
+
+.tour-list li a {
+  font-weight: normal;
+  text-decoration: none;
+}
 
 
 
@@ -106,28 +122,30 @@
                                                     </ul>
                                                     
                                                 </li>
-                                                    <li class="dropdown2" class="<%= activePage === 'Tours' ? 'active' : '' %>">
-                                                        <a href="#" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
-                                                        <ul>
-                                                            <!-- Loop through categories -->
-                                                            <% categoryDetailss.forEach((category) => { %>
-                                                                <li class="dropdown2">
-                                                                    <!-- Link to the category -->
-                                                                    <a href="/category?id=<%= category._id %>"><%= category.name %></a>
-                                                                    
-                                                                    <ul>
-                                                                        <!-- Loop through tours for each category -->
-                                                                        <% category.tours.forEach((tour) => { %>
-                                                                            <li>
-                                                                                <!-- Link to the specific tour -->
-                                                                                <a href="/tour?Tourid=<%= tour._id %>"><%= tour.tourName %></a>
-                                                                            </li>
-                                                                        <% }); %>
-                                                                    </ul>
-                                                                </li>
+                                                <li class="dropdown2 <%= activePage === 'Tours' ? 'active' : '' %>">
+                                                    <a href="#" style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
+                                                    <ul>
+                                                      <!-- Loop through categories in reverse order -->
+                                                      <% categoryDetailss.slice().reverse().forEach((category) => { %>
+                                                        <li class="dropdown2">
+                                                          <!-- Link to the category -->
+                                                          <a href="/category?id=<%= category._id %>"><%= category.name %></a>
+                                                          
+                                                          <ul class="tour-list">
+                                                            <!-- Loop through tours for each category in reverse order -->
+                                                            <% category.tours.slice().reverse().forEach((tour) => { %>
+                                                              <li>
+                                                                <!-- Link to the specific tour -->
+                                                                <a href="/tour?Tourid=<%= tour._id %>" style="font-weight: 500;"><%= tour.tourName %></a>
+                                                              </li>
                                                             <% }); %>
-                                                        </ul>
-                                                    </li>
+                                                          </ul>
+                                                          
+                                                        </li>
+                                                      <% }); %>
+                                                    </ul>
+                                                  </li>
+                                                  
                                                     <li class="<%= activePage === 'offer' ? 'active' : '' %>">
                                                         <a href="/offer" style="<%= activePage === 'offer' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Offer Tours</a>
                                                             </li>

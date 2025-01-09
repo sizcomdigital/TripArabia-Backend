@@ -9,6 +9,7 @@ router.get('/service',usercontroller.getservicepage)
 router.get('/offer',usercontroller.getofferpage)
 router.get('/aboutus',usercontroller.getaboutpage)
 router.get('/search',usercontroller.searchtour)
+router.get('/tickets',usercontroller.ticketpge)
 
 router.get('/contact',usercontroller.getcontactpage)
 router.get('/privacypolicy',usercontroller.getprivacypolicypage)
