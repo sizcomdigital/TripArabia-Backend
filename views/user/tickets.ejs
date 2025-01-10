@@ -113,8 +113,14 @@
                                                 From <span class="price-sale">$169.00</span>
                                                 <span class="price-strike"><s>$199.00</s></span>
                                             </p>
-                                            <button class="btn btn-primary book-now"  style="background-color: #26b7bc;">Book Now</button>
-                                        </div>
+                                            <button
+                                            class="btn btn-primary book-now"
+                                            style="background-color: #26b7bc;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#bookingModal"
+                                          >
+                                            Book Now
+                                          </button>                                        </div>
                                     </div>
                                 </div>
                                 
@@ -141,8 +147,14 @@
                                                 From <span class="price-sale">$169.00</span>
                                                 <span class="price-strike"><s>$199.00</s></span>
                                             </p>
-                                            <button class="btn btn-primary book-now"  style="background-color: #26b7bc;">Book Now</button>
-                                        </div>
+                                            <button
+                                            class="btn btn-primary book-now"
+                                            style="background-color: #26b7bc;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#bookingModal"
+                                          >
+                                            Book Now
+                                          </button>                                         </div>
                                     </div>
                                 </div>
                                 <div class="tour-listing box-sd">
@@ -168,8 +180,14 @@
                                                 From <span class="price-sale">$169.00</span>
                                                 <span class="price-strike"><s>$199.00</s></span>
                                             </p>
-                                            <button class="btn btn-primary book-now"  style="background-color: #26b7bc;">Book Now</button>
-                                        </div>
+                                            <button
+                                            class="btn btn-primary book-now"
+                                            style="background-color: #26b7bc;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#bookingModal"
+                                          >
+                                            Book Now
+                                          </button>                                         </div>
                                     </div>
                                 </div>
                                 <div class="tour-listing box-sd">
@@ -195,8 +213,14 @@
                                                 From <span class="price-sale">$169.00</span>
                                                 <span class="price-strike"><s>$199.00</s></span>
                                             </p>
-                                            <button class="btn btn-primary book-now"  style="background-color: #26b7bc;">Book Now</button>
-                                        </div>
+                                            <button
+                                            class="btn btn-primary book-now"
+                                            style="background-color: #26b7bc;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#bookingModal"
+                                          >
+                                            Book Now
+                                          </button>                                         </div>
                                     </div>
                                 </div>
                                 <div class="tour-listing box-sd">
@@ -222,8 +246,14 @@
                                                 From <span class="price-sale">$169.00</span>
                                                 <span class="price-strike"><s>$199.00</s></span>
                                             </p>
-                                            <button class="btn btn-primary book-now"  style="background-color: #26b7bc;">Book Now</button>
-                                        </div>
+                                            <button
+                                            class="btn btn-primary book-now"
+                                            style="background-color: #26b7bc;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#bookingModal"
+                                          >
+                                            Book Now
+                                          </button>                                         </div>
                                     </div>
                                 </div>
                                 <div class="tour-listing box-sd">
@@ -249,8 +279,14 @@
                                                 From <span class="price-sale">$169.00</span>
                                                 <span class="price-strike"><s>$199.00</s></span>
                                             </p>
-                                            <button class="btn btn-primary book-now" style="background-color: #26b7bc;">Book Now</button>
-                                        </div>
+                                            <button
+                                            class="btn btn-primary book-now"
+                                            style="background-color: #26b7bc;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#bookingModal"
+                                          >
+                                            Book Now
+                                          </button>                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -261,9 +297,6 @@
                     </div>
                 </section>
                 <!-- Widget archieve tour -->
-
-                
-
                 <%-include('../layouts/user/subfooter.ejs')%>
 
             </main>
@@ -277,56 +310,76 @@
     <!-- Modal Popup Bid -->
     <a id="scroll-top" class="button-go"></a>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="logo-canvas">
-                <img src="./assets/images/logo.png" alt="image">
-            </div>
-            <p class="des">The world’s first and largest digital market
-                for crypto collectibles and non-fungible
-            </p>
-            <ul class="canvas-info">
-                <li class="flex-three">
-                    <i class="icon-noun-mail-5780740-1"></i>
-                    <p>Info@webmail.com</p>
-                </li>
-                <li class="flex-three">
-                    <i class="icon-Group-9"></i>
-                    <p>684 555-0102 490</p>
-                </li>
-                <li class="flex-three">
-                    <i class="icon-Layer-19"></i>
-                    <p>6391 Elgin St. Celina, NYC 10299</p>
-                </li>
-            </ul>
-            <ul class="social flex-three">
-                <li>
-                    <a href="#">
-                        <i class="icon-icon-2"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="icon-x"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="icon-8"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="icon-6"></i>
-                    </a>
-                </li>
-            </ul>
+    <%-include('../layouts/user/sidebar.ejs')%>
 
+<!-- Modal -->
+   <!-- Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">Book Now</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+  
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form id="bookingForm">
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+  
+            <!-- Phone Field -->
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+            </div>
+  
+            <!-- Email Field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+  
+            <!-- Date Field -->
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input type="date" class="form-control" id="date" required>
+            </div>
+  
+            <!-- Adult Count Field -->
+            <div class="mb-3">
+              <label for="adultCount" class="form-label">Adult Count</label>
+              <input type="number" class="form-control" id="adultCount" placeholder="Enter adult count" required>
+            </div>
+  
+            <!-- Child Count Field -->
+            <div class="mb-3" >
+              <label for="childCount" class="form-label">Child Count</label>
+              <input type="number" class="form-control" id="childCount" placeholder="Enter child count" required>
+            </div>
+  
+            <!-- Message Field -->
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="2" placeholder="Enter your message"></textarea>
+            </div>
+  
+        
+          </form>
+        </div>
+  
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="bookingForm">Submit</button>
+        </div>
+      </div>
     </div>
+  </div>
 
     <!-- Javascript -->
     <script src="app/js/jquery.min.js"></script>
@@ -339,6 +392,7 @@
     <script src="app/js/price-ranger.js"></script>
     <script src="app/js/shortcodes.js"></script>
     <script src="app/js/main.js"></script>
+
 
 </body>
 

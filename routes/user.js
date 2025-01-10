@@ -18,7 +18,7 @@ router.get('/termscondition',usercontroller.gettermsconditionpage)
 // dynamic files
 router.get('/category', usercontroller.getCategoryWiseTours);
 
- router.get('/tour', usercontroller.getpertour);
+router.get('/tour', usercontroller.getpertour);
 
 router.get('/blog',usercontroller.getblogpage)
 router.get('/blogDetails',usercontroller.getBlogdetailsPage)
