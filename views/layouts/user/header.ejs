@@ -21,6 +21,20 @@
   text-decoration: none;
 }
 
+/* Default: For larger screens, make the tour list scrollable */
+.tour-list {
+  max-height: 200px;  /* Set a height for scrollable content */
+  overflow-y: auto;   /* Enables vertical scrolling */
+  padding-right: 5px; /* Optional space for scrollbar */
+}
+
+/* Mobile Display: Show all tours without a scrollbar */
+@media (max-width: 768px) {
+  .tour-list {
+    max-height: none; /* Remove height restriction */
+    overflow-y: visible; /* Ensure all tours are displayed */
+  }
+}
 
 
      </style>
