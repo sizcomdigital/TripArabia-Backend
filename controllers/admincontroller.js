@@ -154,9 +154,6 @@ module.exports = {
         }
       },
     deleteCategory : async (req, res) => {
-      
-      
-      
         const { id } = req.params;
         
         
@@ -177,7 +174,9 @@ module.exports = {
     getblogpage: async(req,res)=>{
       res.render("admin/blogpage");
     },
-   
+    getticketspage: async(req,res)=>{
+      res.render("admin/ticketpage");
+    }
 }
     
     

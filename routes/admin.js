@@ -49,9 +49,11 @@ router.get('/blogs/:id',verifyToken,tourcontroller.geteditblog);
 router.put('/blogs/:id',verifyToken, upload.array('images',5), tourcontroller.editBlog);
 router.delete('/blogs/:id',verifyToken, tourcontroller.deleteBlog);
 router.delete('/blogimg/:id',verifyToken,tourcontroller.deletePerblogImage)
-
 router.get('/blog',verifyToken,admincontroller.getblogpage)
 router.get('/allblog',verifyToken,tourcontroller.allblogs)
 
+// Tickets page
+
+router.get('/tickets',verifyToken,admincontroller.getticketspage)
 
 module.exports= router
