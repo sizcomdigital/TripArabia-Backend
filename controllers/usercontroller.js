@@ -2,6 +2,7 @@ const Category = require('../models/categorymodel')
 const Tour = require("../models/tourmodel");
 const Blog = require("../models/blogmodel");
 const mongoose = require('mongoose');
+const Ticket = require('../models/ticketmodel')
 
 
 module.exports = {
@@ -417,6 +418,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
     },
     ticketpge: async (req,res)=>{
         try {
+            const tickets = await Ticket.find();
             const category = await Category.find({})
     // Fetch tours for each category
     const categoryDetailss = await Promise.all(category.map(async (category) => {
@@ -432,7 +434,8 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
             res.render("user/tickets", {
                 category,
                 categoryDetailss,
-                activePage: "Tickets" // Set the active page dynamically
+                activePage: "Tickets" ,// Set the active page dynamically
+                tickets
             });
         } catch (error) {
             console.error("Error fetching Tickets page:", error);

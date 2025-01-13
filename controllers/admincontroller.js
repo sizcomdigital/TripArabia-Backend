@@ -175,7 +175,7 @@ module.exports = {
       res.render("admin/blogpage");
     },
     getticketspage: async(req,res)=>{
-      res.render("admin/ticketpage");
+     res.render("admin/ticketpage");
     }
 }
     

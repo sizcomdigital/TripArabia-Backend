@@ -53,7 +53,8 @@ router.get('/blog',verifyToken,admincontroller.getblogpage)
 router.get('/allblog',verifyToken,tourcontroller.allblogs)
 
 // Tickets page
-
 router.get('/tickets',verifyToken,admincontroller.getticketspage)
+router.post('/tickets',verifyToken,upload.array('images',5),tourcontroller.addTicket)
+
 
 module.exports= router

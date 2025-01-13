@@ -15,7 +15,14 @@
      <!-- Favicon and Touch Icons  -->
      <link rel="shortcut icon" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
      <link rel="apple-touch-icon-precomposed" href="https://www.trip-arabia.com/public/assets/images/favicons/favicon-32x32.png">
+<style>
+   .blog-description p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
 
+</style>
 </head>
 
 <body class="body header-fixed ">
@@ -90,205 +97,62 @@
                                 </div>
                             </form>
                             <div class="listing-list-car-grid mb-60">
-                                <div class="tour-listing box-sd">
-                                    <a  class="tour-listing-image">
-                                        <div class="badge-top flex-two">
-                                            <span class="feature" style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
-                                                10% Off
-                                            </span>
-                                        </div>
-                                        
-                                        <img src="./assets/images/travel-list/1.png" alt="Image Listing">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                        <span class="map"><i class="icon-Vector4"></i>Abu Dhabi</span>
-                                        <h3 class="title-tour-list">
-                                            <a >Ferrari World Abu Dhabi Tickets</a>
-                                        </h3>
-                                        <p class="short-description">
-                                            Experience the thrill of Ferrari World Abu Dhabi with exciting rides, attractions, and unique adventures for the whole family.
-                                        </p>
-                                        <div class="price-box flex-two">
-                                            <p>
-                                                From <span class="price-sale">$169.00</span>
-                                                <span class="price-strike"><s>$199.00</s></span>
-                                            </p>
-                                            <button
-                                            class="btn btn-primary book-now"
-                                            style="background-color: #26b7bc;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#bookingModal"
-                                          >
-                                            Book Now
-                                          </button>                                        </div>
-                                    </div>
-                                </div>
+
+                               <% tickets.forEach(ticket => { %>
+  <div class="tour-listing box-sd">
+    <a class="tour-listing-image">
+      <div class="badge-top flex-two">
+        <span class="feature" 
+              style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
+          <%= ticket.offPercentage %>% Off
+        </span>
+      </div>
+      <img src="<%= ticket.images[0] %>" alt="Image Listing">
+    </a>
+    <div class="tour-listing-content">
+      <span class="map">
+        <i class="icon-Vector4"></i>
+        Abu Dhabi
+      </span>
+      <h3 class="title-tour-list">
+        <a><%= ticket.ticketName %></a>
+      </h3>
+     <!-- Description rendered here without <p> tags using JavaScript -->
+        <div class="blog-description">
+            <%- ticket.description %>
+        </div>
+      <div class="price-box flex-two">
+        <p style="font-weight: bold;">
+          From 
+          <span class="price-sale">AED<%= ticket.offerPrice.toFixed(2) %></span>
+          <span class="price-strike">
+            <s>$<%= ticket.actualPrice.toFixed(2) %></s>
+          </span>
+        </p>
+        <button
+          class="btn btn-primary book-now"
+          style="background-color: #26b7bc;"
+          data-bs-toggle="modal"
+          data-bs-target="#bookingModal"
+        >
+          Book Now
+        </button>
+      </div>
+    </div>
+  </div>
+<% }); %>
+
                                 
-                                <div class="tour-listing box-sd">
-                                    <a  class="tour-listing-image">
-                                        <div class="badge-top flex-two">
-                                            <span class="feature" style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
-                                                10% Off
-                                            </span>
-                                        </div>
-                                        
-                                        <img src="./assets/images/travel-list/1.png" alt="Image Listing">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                        <span class="map"><i class="icon-Vector4"></i>Abu Dhabi</span>
-                                        <h3 class="title-tour-list">
-                                            <a >Ferrari World Abu Dhabi Tickets</a>
-                                        </h3>
-                                        <p class="short-description">
-                                            Experience the thrill of Ferrari World Abu Dhabi with exciting rides, attractions, and unique adventures for the whole family.
-                                        </p>
-                                        <div class="price-box flex-two">
-                                            <p>
-                                                From <span class="price-sale">$169.00</span>
-                                                <span class="price-strike"><s>$199.00</s></span>
-                                            </p>
-                                            <button
-                                            class="btn btn-primary book-now"
-                                            style="background-color: #26b7bc;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#bookingModal"
-                                          >
-                                            Book Now
-                                          </button>                                         </div>
-                                    </div>
-                                </div>
-                                <div class="tour-listing box-sd">
-                                    <a  class="tour-listing-image">
-                                        <div class="badge-top flex-two">
-                                            <span class="feature" style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
-                                                10% Off
-                                            </span>
-                                        </div>
-                                        
-                                        <img src="./assets/images/travel-list/1.png" alt="Image Listing">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                        <span class="map"><i class="icon-Vector4"></i>Abu Dhabi</span>
-                                        <h3 class="title-tour-list">
-                                            <a >Ferrari World Abu Dhabi Tickets</a>
-                                        </h3>
-                                        <p class="short-description">
-                                            Experience the thrill of Ferrari World Abu Dhabi with exciting rides, attractions, and unique adventures for the whole family.
-                                        </p>
-                                        <div class="price-box flex-two">
-                                            <p>
-                                                From <span class="price-sale">$169.00</span>
-                                                <span class="price-strike"><s>$199.00</s></span>
-                                            </p>
-                                            <button
-                                            class="btn btn-primary book-now"
-                                            style="background-color: #26b7bc;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#bookingModal"
-                                          >
-                                            Book Now
-                                          </button>                                         </div>
-                                    </div>
-                                </div>
-                                <div class="tour-listing box-sd">
-                                    <a  class="tour-listing-image">
-                                        <div class="badge-top flex-two">
-                                            <span class="feature" style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
-                                                10% Off
-                                            </span>
-                                        </div>
-                                        
-                                        <img src="./assets/images/travel-list/1.png" alt="Image Listing">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                        <span class="map"><i class="icon-Vector4"></i>Abu Dhabi</span>
-                                        <h3 class="title-tour-list">
-                                            <a >Ferrari World Abu Dhabi Tickets</a>
-                                        </h3>
-                                        <p class="short-description">
-                                            Experience the thrill of Ferrari World Abu Dhabi with exciting rides, attractions, and unique adventures for the whole family.
-                                        </p>
-                                        <div class="price-box flex-two">
-                                            <p>
-                                                From <span class="price-sale">$169.00</span>
-                                                <span class="price-strike"><s>$199.00</s></span>
-                                            </p>
-                                            <button
-                                            class="btn btn-primary book-now"
-                                            style="background-color: #26b7bc;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#bookingModal"
-                                          >
-                                            Book Now
-                                          </button>                                         </div>
-                                    </div>
-                                </div>
-                                <div class="tour-listing box-sd">
-                                    <a  class="tour-listing-image">
-                                        <div class="badge-top flex-two">
-                                            <span class="feature" style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
-                                                10% Off
-                                            </span>
-                                        </div>
-                                        
-                                        <img src="./assets/images/travel-list/1.png" alt="Image Listing">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                        <span class="map"><i class="icon-Vector4"></i>Abu Dhabi</span>
-                                        <h3 class="title-tour-list">
-                                            <a >Ferrari World Abu Dhabi Tickets</a>
-                                        </h3>
-                                        <p class="short-description">
-                                            Experience the thrill of Ferrari World Abu Dhabi with exciting rides, attractions, and unique adventures for the whole family.
-                                        </p>
-                                        <div class="price-box flex-two">
-                                            <p>
-                                                From <span class="price-sale">$169.00</span>
-                                                <span class="price-strike"><s>$199.00</s></span>
-                                            </p>
-                                            <button
-                                            class="btn btn-primary book-now"
-                                            style="background-color: #26b7bc;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#bookingModal"
-                                          >
-                                            Book Now
-                                          </button>                                         </div>
-                                    </div>
-                                </div>
-                                <div class="tour-listing box-sd">
-                                    <a  class="tour-listing-image">
-                                        <div class="badge-top flex-two">
-                                            <span class="feature" style="background-color: #ff5050; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 14px;">
-                                                10% Off
-                                            </span>
-                                        </div>
-                                        
-                                        <img src="./assets/images/travel-list/1.png" alt="Image Listing">
-                                    </a>
-                                    <div class="tour-listing-content">
-                                        <span class="map"><i class="icon-Vector4"></i>Abu Dhabi</span>
-                                        <h3 class="title-tour-list">
-                                            <a >Ferrari World Abu Dhabi Tickets</a>
-                                        </h3>
-                                        <p class="short-description">
-                                            Experience the thrill of Ferrari World Abu Dhabi with exciting rides, attractions, and unique adventures for the whole family.
-                                        </p>
-                                        <div class="price-box flex-two">
-                                            <p>
-                                                From <span class="price-sale">$169.00</span>
-                                                <span class="price-strike"><s>$199.00</s></span>
-                                            </p>
-                                            <button
-                                            class="btn btn-primary book-now"
-                                            style="background-color: #26b7bc;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#bookingModal"
-                                          >
-                                            Book Now
-                                          </button>                                         </div>
-                                    </div>
-                                </div>
+                               
+
+                              
+
+                               
+
+                              
+
+                                
+
                             </div>
                             
                             
@@ -393,6 +257,7 @@
     <script src="app/js/shortcodes.js"></script>
     <script src="app/js/main.js"></script>
 
+    
 
 </body>
 

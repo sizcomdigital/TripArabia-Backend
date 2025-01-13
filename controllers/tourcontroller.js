@@ -5,7 +5,7 @@ const Blog = require("../models/blogmodel");
 const crypto = require("crypto");
 const Category = require("../models/categorymodel");
 const mongoose = require("mongoose");
-const { log } = require("console");
+const Ticket = require('../models/ticketmodel')
 
 module.exports = {
   addTour: async (req, res) => {
@@ -369,7 +369,6 @@ console.log(tripTime);
     }
 },
   // Delete a blog post
-
   deleteBlog: async (req, res) => {
 
     const { id } = req.params;
@@ -538,7 +537,7 @@ if (tour.tripTime) {
         res.status(500).json({ message: 'Server error' });
     }
 },
-updatebestStatus: async(req,res)=>{
+ updatebestStatus: async(req,res)=>{
   try {
     const tourId = req.params.id;
 
@@ -575,6 +574,52 @@ makeAsOffer: async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });
+  }
+},
+addTicket : async (req, res) => {
+  try {
+    console.log(req.body, req.files);
+    
+      const { ticketName, description, offerPrice, actualPrice, offPercentage } = req.body;
+
+      // Initialize an array to store Cloudinary image URLs
+      const cloudinaryImageUrls = [];
+      // Handle image uploads
+      if (req.files && req.files.length > 0) {
+          for (const file of req.files) {
+              // Upload image to Cloudinary
+              const cloudinaryResponse = await cloudinary.uploader.upload(file.path, {
+                  folder: "tickets", // Optional folder for organization in Cloudinary
+              });
+              cloudinaryImageUrls.push(cloudinaryResponse.secure_url);
+          }
+      }
+      console.log(cloudinaryImageUrls);
+      
+      // Create a new ticket
+      const newTicket = new Ticket({
+          ticketName,
+          description,
+          offerPrice,
+          actualPrice,
+          offPercentage,
+          images: cloudinaryImageUrls, // Store array of image URLs
+      });
+      console.log(newTicket);
+      
+      // Save the ticket to the database
+       await newTicket.save();
+
+      res.status(201).json({
+          success: true,
+          message: 'Ticket created successfully.',
+      });
+  } catch (error) {
+      res.status(500).json({
+          success: false,
+          message: 'Failed to create ticket.',
+          error: error.message,
+      });
   }
 }
 };

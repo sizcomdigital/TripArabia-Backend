@@ -48,7 +48,7 @@
                                
                                 <div class="input-wrap mb-45">
                                     <label>Ticket Name</label>
-                                    <input type="text" placeholder="Dubai Desert" name="ticketname">
+                                    <input type="text" placeholder="Ferrari World" name="ticketName">
                                 </div>
                                 
                                 <div class="input-wrap mb-45">
@@ -71,7 +71,7 @@
                                   <!-- Hours of Trip -->
                                   <div class="input-wrap">
                                     <label for="tripDuration">Offer Percentage</label>
-                                    <input type="number" id="tripDuration" placeholder="Offer Percentage" min="0" step="1" name="offerpercent">
+                                    <input type="number" id="tripDuration" placeholder="Offer Percentage" min="0" step="1" name="offPercentage">
                                 </div>
                                 <div class="input-wrap">
              <label>Upload Photo</label>
@@ -197,7 +197,7 @@
         const files = form.querySelectorAll('input[type="file"]');
         for (const fileInput of files) {
             const file = fileInput.files[0];
-            if (file && file.size > 10 * 1024 * 1024) { // 10 MB limit
+            if (file && file.size > 40 * 1024 * 1024) { // 10 MB limit
                 Swal.fire({
                     icon: 'error',
                     title: 'File too large!',
@@ -224,7 +224,7 @@
         document.body.appendChild(loader);
 
         try {
-            const response = await fetch('/admin/blog', {
+            const response = await fetch('/admin/tickets', {
                 method: 'POST',
                 body: formData,
             });
@@ -238,7 +238,7 @@
                 // Success message
                 Swal.fire({
                     icon: 'success',
-                    title: 'Blog added successfully!',
+                    title: 'Ticket added successfully!',
                     text: result.message,
                 });
 
@@ -254,7 +254,7 @@
                 // Error message
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error adding blog!',
+                    title: 'Error adding ticket!',
                     text: result.message || 'An error occurred.',
                 });
             }
@@ -265,7 +265,7 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
-                text: 'Something went wrong while adding the blog.',
+                text: 'Something went wrong while adding the Ticket.',
             });
         }
     });
