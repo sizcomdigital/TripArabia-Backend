@@ -73,7 +73,7 @@
                             <form action="/" class="tf-my-listing mb-37">
                                 <div class="row align-center">
                                     <div class="col-sm-5">
-                                        <p class="showing">Showing <span class="text-main">12</span> of 12 Results</p>
+                                        <p class="showing"></p>
                                     </div>
                                     <div class="col-sm-7  flex-six group-bar-wrap">
                                         <div class="listing-all-wrap">
@@ -114,8 +114,8 @@
         <i class="icon-Vector4"></i>
         Abu Dhabi
       </span>
-      <h3 class="title-tour-list">
-        <a><%= ticket.ticketName %></a>
+      <h3 class="title-tour-list" >
+        <a id="ticketName"><%= ticket.ticketName %></a>
       </h3>
      <!-- Description rendered here without <p> tags using JavaScript -->
         <div class="blog-description">
@@ -124,9 +124,9 @@
       <div class="price-box flex-two">
         <p style="font-weight: bold;">
           From 
-          <span class="price-sale">AED<%= ticket.offerPrice.toFixed(2) %></span>
+          <span class="price-sale" id="offerPrice">AED<%= ticket.offerPrice.toFixed(2) %></span>
           <span class="price-strike">
-            <s>$<%= ticket.actualPrice.toFixed(2) %></s>
+            <s>AED<%= ticket.actualPrice.toFixed(2) %></s>
           </span>
         </p>
         <button
@@ -141,18 +141,6 @@
     </div>
   </div>
 <% }); %>
-
-                                
-                               
-
-                              
-
-                               
-
-                              
-
-                                
-
                             </div>
                             
                             
@@ -178,7 +166,8 @@
 
 <!-- Modal -->
    <!-- Modal -->
-  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <!-- Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <!-- Modal Header -->
@@ -221,7 +210,7 @@
             </div>
   
             <!-- Child Count Field -->
-            <div class="mb-3" >
+            <div class="mb-3">
               <label for="childCount" class="form-label">Child Count</label>
               <input type="number" class="form-control" id="childCount" placeholder="Enter child count" required>
             </div>
@@ -231,15 +220,13 @@
               <label for="message" class="form-label">Message</label>
               <textarea class="form-control" id="message" rows="2" placeholder="Enter your message"></textarea>
             </div>
-  
-        
           </form>
         </div>
   
         <!-- Modal Footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" form="bookingForm">Submit</button>
+          <button type="button" class="btn btn-primary" id="submitBooking">Submit</button>
         </div>
       </div>
     </div>
@@ -257,7 +244,42 @@
     <script src="app/js/shortcodes.js"></script>
     <script src="app/js/main.js"></script>
 
-    
+    <!-- WhatsApp share functionality -->
+    <script>
+        document.getElementById('submitBooking').addEventListener('click', function() {
+          // Get the form data
+          const ticketName = document.getElementById('ticketName').textContent; // Get ticket name
+          const offerPrice = document.getElementById('offerPrice').textContent; // Get offer price
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+          const email = document.getElementById('email').value;
+          const date = document.getElementById('date').value;
+          const adultCount = document.getElementById('adultCount').value;
+          const childCount = document.getElementById('childCount').value;
+          const message = document.getElementById('message').value;
+      
+          // Format the message
+          const formattedMessage = `*Ticket Name:* ${ticketName}\n*Offer Price:* ${offerPrice}\n\n` +
+                                   `*Booking Details:*\n` +
+                                   `Name: ${name}\n` +
+                                   `Phone: ${phone}\n` +
+                                   `Email: ${email}\n` +
+                                   `Date: ${date}\n` +
+                                   `Adults: ${adultCount}\n` +
+                                   `Children: ${childCount}\n` +
+                                   `Message: ${message}`;
+      
+          // Replace this with your WhatsApp number in international format (without '+')
+          const phoneNumber = "+971545800101";  // Replace with your own WhatsApp number
+      
+          // Construct the WhatsApp URL
+          const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(formattedMessage)}`;
+      
+          // Open WhatsApp in a new tab with the pre-filled message
+          window.open(whatsappURL, '_blank');
+        });
+      </script>
+      
 
 </body>
 
