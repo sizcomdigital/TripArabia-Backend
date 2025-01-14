@@ -1,3 +1,23 @@
+<style>
+    .footer-links a {
+  
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.footer-links a:hover {
+    color: #f29200; /* Change color on hover */
+
+}
+
+.social li {
+    list-style: none;
+    margin-left: 10px; /* Adjust spacing between icons */
+}
+
+</style>
+
+
 <footer class="footer footer-style1">
     <div class="tf-container">
         <div class="footer-main">
@@ -91,8 +111,14 @@
             <div class="col-md-6">
                 <p class="copy-right">Copyright © 2024 by <a href="#" class="text-main">Trip Arabia</a> All Rights Reserved</p>
             </div>
-            <div class="col-md-6">
-                <ul class="social flex-six">
+            <div class="col-md-6 d-flex justify-content-end align-items-center">
+                <!-- Terms and Privacy Links -->
+                <div class="footer-links me-3">
+                    <a href="/termscondition" target="_blank" style="color: white;"    class="footer-link">Terms and Conditions</a> | 
+                    <a href="/privacypolicy" target="_blank" style="color: white;" class="footer-link">Privacy Policy</a>
+                </div>
+                <!-- Social Media Icons -->
+                <ul class="social d-flex mb-0">
                     <li>
                         <a href="#" target="_blank">
                             <i class="icon-icon-2"></i>
@@ -111,5 +137,6 @@
                 </ul>
             </div>
         </div>
+        
     </div>
 </footer>

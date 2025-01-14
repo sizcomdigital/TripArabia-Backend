@@ -55,6 +55,8 @@ router.get('/allblog',verifyToken,tourcontroller.allblogs)
 // Tickets page
 router.get('/tickets',verifyToken,admincontroller.getticketspage)
 router.post('/tickets',verifyToken,upload.array('images',5),tourcontroller.addTicket)
+router.get('/alltickets',verifyToken,tourcontroller.alltickets)
+router.delete('/tickets/:id',verifyToken, tourcontroller.deletetickets);
 
 
 module.exports= router

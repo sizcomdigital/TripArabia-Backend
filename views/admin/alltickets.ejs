@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Trip Arabia | Travel & Tourism</title>
+
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/app/css/app.css">
+    <link rel="stylesheet" href="/app/css/map.min.css">
+
+    <%-include('../layouts/admin/favicon.ejs')%>
+
+</head>
+<body class="body header-fixed">
+
+    <div class="preload preload-container">
+        <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+            <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+            <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        </svg>
+    </div>
+    <!-- /preload -->
+    <div id="wrapper">
+        <div id="pagee" class="clearfix">
+      <%-include('../layouts/admin/sideheader.ejs')%>
+                <main id="main">
+                    <section class="profile-dashboard">
+                        <div class="inner-header mb-40">
+                            <h3 class="title">All Tours</h3>
+                           
+                        </div>
+                        <div class="my-booking-wrap ">
+                            <ul class="booking-table-title flex-three">
+                                <li>
+                                    <p>Image</p>
+                                </li>
+                                <li>
+                                    <p>Ticket Name</p>
+                                </li>
+                                <li>
+                                    <p>Created Date</p>
+                                </li>
+                                
+                                <li>
+                                    <p>Action</p>
+                                </li>
+                            </ul>
+                            <ul class="booking-table-content mb-60">
+                                <% Tickets.forEach(Ticket => { %>
+                                <li class="flex-three">
+                                    <div class="booking-list flex-three">
+                                        <div class="image">
+                                            <img src="<%=Ticket.images[0]%>" alt="image">
+                                        </div>
+                                    </div>
+                                    <div class="booking-list-table">
+                                        <p class="date-gues"><%= Ticket.ticketName %></p>
+                                    </div>
+
+                                    <div class="booking-list-table">
+                                        <p class="date-gues"><%= new Date(Ticket.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></p>
+                                    </div>
+                                  
+                                    <div class="flex-five action-wrap">
+                                      
+                                        <div class="action flex-five" 
+                                         data-id="<%= Ticket._id %>" 
+                                         onclick="deleteticket('<%= Ticket._id %>')">
+                                       <i class="icon-Vector-17"></i> 
+                                               </div>
+
+                                    </div>
+                                </li>
+                                <% }); %>
+                            </ul>
+                            
+                            
+                        </div>
+                    </section>
+
+                </main>
+
+                <%-include('../layouts/admin/footer.ejs')%>
+                <!-- Bottom -->
+            </div>
+
+        </div>
+        <!-- /#page -->
+    </div>
+
+    <!-- Modal Popup Bid -->
+
+    <a id="scroll-top" class="button-go"></a>
+
+    <!-- Modal search-->
+    <div class="modal search-mobie fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <form action="/" class="search-form-mobie">
+                        <div class="search">
+                            <i class="icon-circle2017"></i>
+                            <input type="search" placeholder="Search Travel" class="search-input" autocomplete="off">
+                            <button type="button">Search</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="/app/js/jquery.min.js"></script>
+    <script src="/app/js/jquery.nice-select.min.js"></script>
+    <script src="/app/js/bootstrap.min.js"></script>
+    <script src="/app/js/tinymce/tinymce.min.js"></script>
+    <script src="/app/js/tinymce/tinymce-custom.js"></script>
+    <script src="/app/js/swiper-bundle.min.js"></script>
+    <script src="/app/js/swiper.js"></script>
+    <script src="/app/js/plugin.js"></script>
+    <script src="/app/js/map.min.js"></script>
+    <script src="/app/js/map.js"></script>
+    <script src="/app/js/shortcodes.js"></script>
+    <script src="/app/js/main.js"></script>
+
+    <script>
+        // Delete Blog with SweetAlert
+        async function deleteticket(ticketId) {
+            try {
+                // Confirmation popup using SweetAlert
+                const confirmation = await Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'This action cannot be undone!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                });
+    
+                if (confirmation.isConfirmed) {
+                    // Send DELETE request
+                    const response = await fetch(`/admin/tickets/${ticketId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+    
+                    if (response.ok) {
+                        const result = await response.json();
+    
+                        // Success message
+                        await Swal.fire({
+                            title: 'Deleted!',
+                            text: result.message || 'The blog has been successfully deleted.',
+                            icon: 'success',
+                            timer: 1500, // Auto-close after 1.5 seconds
+                            showConfirmButton: false,
+                        });
+    
+                        // Remove the blog from the DOM
+                        const blogElement = document.querySelector(`div[data-id="${ticketId}"]`);
+                        if (blogElement) {
+                            const listItem = blogElement.closest('li') || blogElement; // Fallback to remove the element itself
+                            listItem.remove();
+                        }
+                    } else {
+                        // Backend returned an error
+                        const errorResult = await response.json();
+                        Swal.fire({
+                            title: 'Error!',
+                            text: errorResult.message || 'Unable to delete the blog.',
+                            icon: 'error',
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Display generic error message
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An error occurred while deleting the blog. Please try again later.',
+                    icon: 'error',
+                });
+            }
+        }
+    </script>
+    
+    <!-- <script>
+        function editBlog(blogId) {
+          // Redirect to the edit page
+          location.href = `/admin/blogs/${blogId}`;
+        }
+      </script>
+     -->
+    
+
+</body>
+
+</html>

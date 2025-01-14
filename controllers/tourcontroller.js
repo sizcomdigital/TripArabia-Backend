@@ -378,12 +378,7 @@ console.log(tripTime);
       if (!blog) {
         return res.status(404).json({ message: "Blog not found" });
       }
-      // // Optional: Delete images from Cloudinary
-      // for (const imageUrl of blog.images) {
-      //   const publicId = imageUrl.split('/').pop().split('.')[0]; // Extract public_id from URL
-      //   await cloudinary.uploader.destroy(`blogs/${publicId}`); // Assumes images are stored in `blogs` folder
-      // }
-
+      
       await Blog.findByIdAndDelete(id);
 
       res.status(200).json({ message: "Blog deleted successfully" });
@@ -620,6 +615,29 @@ addTicket : async (req, res) => {
           message: 'Failed to create ticket.',
           error: error.message,
       });
+  }
+},
+alltickets: async (req, res) => {
+  const Tickets = await Ticket.find({});
+  res.render("admin/alltickets", { Tickets });
+},
+deletetickets: async (req, res) => {
+
+  const { id } = req.params;
+
+  try {
+    const Tickets = await Ticket.findById(id);
+    if (!Tickets) {
+      return res.status(404).json({ message: "Tickets not found" });
+    }
+
+    await Ticket.findByIdAndDelete(id);
+    res.status(200).json({ message: "Ticket deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting Ticket:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to delete Ticket", error: error.message });
   }
 }
 };

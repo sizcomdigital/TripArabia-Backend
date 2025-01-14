@@ -1,7 +1,7 @@
 const Admin = require('../models/adminmodel');
 const bcrypt = require('bcrypt');
 const Category = require('../models/categorymodel')
-
+const Ticket = require('../models/ticketmodel')
 const jwt = require('jsonwebtoken');
 const Tour = require('../models/tourmodel');
 
@@ -80,11 +80,13 @@ module.exports = {
     },
     adminhome: async (req, res) => {
       const categoryCount = await Category.countDocuments({});
+      const ticketCount = await Ticket.countDocuments({});
       const tourCount = await Tour.countDocuments({});
         res.render("admin/dashboard",{
           
             categoryCount,
-            tourCount
+            tourCount,
+            ticketCount
         
         });
     },

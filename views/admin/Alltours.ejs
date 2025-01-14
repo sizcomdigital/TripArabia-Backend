@@ -83,7 +83,6 @@
     onclick="toggleStatus(this)">
     <%= tour.status ? 'Active' : 'Inactive' %>
 </button>
-
                         </div>
                         <div class="flex-five action-wrap">
                             <div class="action flex-five" onclick="editTour('<%= tour._id %>')">
@@ -111,8 +110,6 @@
                     </li>
                 <% }); %>
             </ul>
-         
-            
             <div class="row">
                 <div class="col-md-12">
                     <ul class="tf-pagination flex-five mt-20">
@@ -152,7 +149,6 @@
     
 </main>
 
-
                 <%-include('../layouts/admin/footer.ejs')%>
                 <!-- Bottom -->
             </div>
@@ -183,8 +179,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Javascript -->
     <script src="/app/js/jquery.min.js"></script>
