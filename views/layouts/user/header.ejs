@@ -118,19 +118,27 @@
                                                           <a href="/category?id=<%= category._id %>"><%= category.name %></a>
                                                           
                                                           <ul class="tour-list">
-                                                            <!-- Loop through tours for each category in reverse order -->
-                                                            <% category.tours.slice().reverse().forEach((tour) => { %>
+                                                            <!-- Loop through tours for each category and limit to 5 -->
+                                                            <% category.tours.slice().reverse().slice(0, 4).forEach((tour) => { %>
                                                               <li>
                                                                 <!-- Link to the specific tour -->
                                                                 <a href="/tour?Tourid=<%= tour._id %>" style="font-weight: 500;"><%= tour.tourName %></a>
                                                               </li>
                                                             <% }); %>
+                                                  
+                                                            <!-- Add "See All" option if there are more than 5 tours -->
+                                                            <% if (category.tours.length > 4) { %>
+                                                              <li>
+                                                                <a href="/category?id=<%= category._id %>" style="font-weight: bold; color: #26b7bc;">See All +</a>
+                                                              </li>
+                                                            <% } %>
                                                           </ul>
                                                           
                                                         </li>
                                                       <% }); %>
                                                     </ul>
                                                   </li>
+                                                  
                                                   <li>
                                                     <a href="/tickets" style="<%= activePage === 'Tickets' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tickets</a>                                                </li>
                                                 </li>
@@ -138,10 +146,11 @@
                                                         <a href="/offer" style="<%= activePage === 'offer' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Offer Tours</a>
                                                             </li>
                                                 <li class="<%= activePage === 'service' ? 'active' : '' %>">
-                                                    <a href="/service" style="<%= activePage === 'service' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Services</a>                                                </li>
+                                                    <a href="/service" style="<%= activePage === 'service' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Services</a>
+                                                                                                </li>
                                                 <li class="<%= activePage === 'blog' ? 'active' : '' %>">
 
-                                                    <a href="/blog" style="<%= activePage === 'blog' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Blog</a>                                                </li>
+                                                <a href="/blog" style="<%= activePage === 'blog' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Blog</a>                                                </li>
 
                                                 </li>
                                                

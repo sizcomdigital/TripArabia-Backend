@@ -5394,7 +5394,7 @@
   font-size: 15px;
   font-weight: 500;
   line-height: 27px;
-  color: #081E2A;
+ 
 }
 .footer-style2 .footer-bottom .policy-tern li:not(:first-child) {
   margin-left: 40px;
@@ -5403,7 +5403,7 @@
   font-size: 15px;
   font-weight: 500;
   line-height: 27px;
-  color: #081E2A;
+ 
 }
 .footer-style2 .footer-bottom .policy-tern li a:hover {
   color: #f29200;
@@ -10791,9 +10791,9 @@ body .dribbble img {
   .icon-box-style5 {
     padding: 20px 4px;
   }
-  .footer-style1 .footer-bottom {
+  /* .footer-style1 .footer-bottom {
     display: none;
-  }
+  } */
   .contact-us .contact-us-wrap {
     margin-left: 0px;
     margin-top: 40px;
@@ -10926,9 +10926,9 @@ body .dribbble img {
     top: -3%;
     left: 0%;
   }
-  .footer-bottom .policy-tern {
+  /* .footer-bottom .policy-tern {
     display: none;
-  }
+  } */
   .footer-style2 .footer-bottom .policy-tern li:not(:first-child) {
     margin-left: 15px;
   }
