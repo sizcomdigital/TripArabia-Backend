@@ -115,6 +115,7 @@
                                                 </ul>
 
                                             </li>
+                                            
                                             <li class="dropdown2 <%= activePage === 'Tours' ? 'active' : '' %>">
                                                 <a href="#"
                                                     style="<%= activePage === 'Tours' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tours</a>
@@ -126,7 +127,6 @@
                                                             <a href="/category?id=<%= category._id %>">
                                                                 <%= category.name %>
                                                             </a>
-
                                                             <ul class="tour-list">
                                                                 <!-- Loop through tours for each category and limit to 5 -->
                                                                 <% category.tours.slice().reverse().slice(0,
