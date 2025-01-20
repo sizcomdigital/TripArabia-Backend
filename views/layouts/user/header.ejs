@@ -126,10 +126,10 @@
                                                             <!-- Link to the category -->
                                                             <a href="/category?id=<%= category._id %>">
                                                                 <%= category.name %>
-                                                            </a>
+                                                            </a> 
                                                             <ul class="tour-list">
                                                                 <!-- Loop through tours for each category and limit to 5 -->
-                                                                <% category.tours.slice().reverse().slice(0,
+                                                                <% category.tours.slice(0,
                                                                     5).forEach((tour)=> { %>
                                                                     <li>
                                                                         <!-- Link to the specific tour -->
@@ -154,7 +154,6 @@
                                                         <% }); %>
                                                 </ul>
                                             </li>
-
                                             <li>
                                                 <a href="/tickets"
                                                     style="<%= activePage === 'Tickets' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Tickets</a>
@@ -174,7 +173,6 @@
                                                 <a href="/blog"
                                                     style="<%= activePage === 'blog' ? 'color: #26b7bc; font-weight: bold;' : '' %>">Blog</a>
                                             </li>
-
                                             </li>
 
                                             <li>
