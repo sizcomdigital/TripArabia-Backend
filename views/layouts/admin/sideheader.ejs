@@ -1,3 +1,38 @@
+<style>.sidebar-dashboard {
+    height: 100vh; /* Full height of the viewport */
+    overflow-y: auto; /* Allows scrolling if content exceeds the viewport height */
+}
+
+.db-menu {
+    padding-right: 15px; /* Adds padding to the right to avoid content sticking to the edge */
+}
+
+.db-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-title {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.sidebar-dashboard a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.sidebar-dashboard li {
+    margin-bottom: 15px;
+}
+
+.sidebar-dashboard i {
+    margin-right: 10px;
+}
+</style>
+
 <div class="sidebar-dashboard">
     <div class="">
         <a href="/"><img src="/assets/images/trip-arabia-dashboard.png" alt="Logo" style="width: auto;"></a>
@@ -10,7 +45,12 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="">
+
+            <!-- Manage Tours Section -->
+            <li class="menu-title">
+                <span>Manage Tours</span>
+            </li>
+            <li>
                 <a href="/admin/addtour">
                     <i class="icon-Group-91"></i>
                     <span>Add Tour</span>
@@ -22,7 +62,18 @@
                     <span>All Tours</span>
                 </a>
             </li>
-            <li class="">
+            <li>
+                <a href="/admin/edittours">
+                    <i class="icon-Group-91"></i>
+                    <span>Prioritize Tours</span>
+                </a>
+            </li>
+
+            <!-- Manage Categories Section -->
+            <li class="menu-title">
+                <span>Manage Categories</span>
+            </li>
+            <li>
                 <a href="/admin/addcategory">
                     <i class="icon-Group-91"></i>
                     <span>Add Category</span>
@@ -31,47 +82,47 @@
             <li>
                 <a href="/admin/allcategory">
                     <i class="icon-Group-81"></i>
-                    <span>All Category</span>
+                    <span>All Categories</span>
                 </a>
             </li>
-            <li class="">
+
+            <!-- Manage Blog Section -->
+            <li class="menu-title">
+                <span>Manage Blogs</span>
+            </li>
+            <li>
                 <a href="/admin/blog">
                     <i class="icon-Group-91"></i>
                     <span>Add Blog</span>
                 </a>
             </li>
-            
-            <li class="">
+            <li>
                 <a href="/admin/allblog">
                     <i class="icon-Group-91"></i>
                     <span>All Blogs</span>
                 </a>
             </li>
-            <li class="">
+
+            <!-- Manage Tickets Section -->
+            <li class="menu-title">
+                <span>Manage Tickets</span>
+            </li>
+            <li>
                 <a href="/admin/tickets">
                     <i class="icon-Group-91"></i>
-                    <span>Add tickets</span>
+                    <span>Add Tickets</span>
                 </a>
             </li>
-            <li class="">
+            <li>
                 <a href="/admin/alltickets">
                     <i class="icon-Group-91"></i>
-                    <span>All tickets</span>
+                    <span>All Tickets</span>
                 </a>
             </li>
-            <li class="">
-                <a href="/admin/edittours">
-                    <i class="icon-Group-91"></i>
-                    <span>prioritizing Tours</span>
-                </a>
-            </li>
-
         </ul>
-
-
     </div>
-
 </div>
+
 <div class="has-dashboard">
     <!-- Main Header -->
     <header class="main-header flex">
@@ -102,8 +153,7 @@
 
                                         </ul>
                                     </div> 
-                                    
-
+            
                                 </div>
                             </div>
                         </div>
@@ -111,10 +161,7 @@
                 </div>
             </div>
         </div>
-
         <!-- End Header Lower -->
-
-
         <!-- Mobile Menu  -->
         <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
         <div class="mobile-menu">
