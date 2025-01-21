@@ -74,6 +74,10 @@ const tourSchema = new mongoose.Schema({
     type: Boolean,
     default:true,
   },
+  priority: {
+    type: Number,
+    default: 0, // Default priority value
+  },
   // Add the offer field
   offer: { type: Boolean, default: false }, // Default to false
 });

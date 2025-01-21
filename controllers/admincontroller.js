@@ -105,7 +105,8 @@ module.exports = {
         res.status(500).send("Internal Server Error");
     }
     },
-    alltours: async (req, res) => {
+  alltours: async (req, res) => {
+      const categories = await Category.find({});
       const page = parseInt(req.query.page) || 1; // Current page, default to 1
       const limit = 6; // Number of tours per page
       const skip = (page - 1) * limit; // Skip calculation for pagination
@@ -121,7 +122,8 @@ module.exports = {
           res.render("admin/Alltours", { 
               tour, 
               currentPage: page, 
-              totalPages 
+              totalPages,
+              categories
           });
       } catch (error) {
           console.error('Error fetching tours:', error);
@@ -178,7 +180,23 @@ module.exports = {
     },
     getticketspage: async(req,res)=>{
      res.render("admin/ticketpage");
-    }
+    },
+    alleditabletours: async (req, res) => {
+      try {
+          // Fetch all categories
+          const categories = await Category.find({}).lean(); // Using `.lean()` for performance
+          // Fetch all tours and populate their category information
+          const tours = await Tour.find({}).populate('category','_id name').lean();
+          // Render the admin/Editabletours view with the fetched data
+          res.render("admin/Editabletours", { 
+              tours, 
+              categories, 
+          });
+      } catch (error) {
+          console.error('Error fetching tours:', error);
+          res.status(500).send('Error fetching tours');
+      }
+  }
 }
     
     

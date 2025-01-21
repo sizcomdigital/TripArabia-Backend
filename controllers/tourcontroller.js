@@ -639,5 +639,47 @@ deletetickets: async (req, res) => {
       .status(500)
       .json({ message: "Failed to delete Ticket", error: error.message });
   }
+},
+
+updatePriority : async (req, res) => {
+  try {
+    console.log(req.body);
+    console.log(req.params);
+
+    const { tourId } = req.params; // Get tourId from the URL parameter
+    const { priority: priorityString } = req.body;
+const priority = Number(priorityString);
+
+if (isNaN(priority) || priority < 0) {
+  return res.status(400).json({ message: 'Invalid priority value' });
 }
+
+
+    // Check if priority is provided and is a number
+    if (typeof priority !== 'number' || priority < 0) {
+      return res.status(400).json({ message: 'Invalid priority value' });
+    }
+
+    // Find the tour by ID and update the priority
+    const updatedTour = await Tour.findByIdAndUpdate(
+      tourId,
+      { priority },
+      { new: true } // Return the updated tour
+    );
+console.log(updatedTour,"updattttttttttttttedddddddd");
+
+    if (!updatedTour) {
+      return res.status(404).json({ message: 'Tour not found' });
+    }
+
+    res.status(200).json({
+      message: 'Tour priority updated successfully',
+      updatedTour,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
 };

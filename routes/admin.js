@@ -36,13 +36,16 @@ router.put('/make-as-offer/:id', verifyToken, tourcontroller.makeAsOffer);
 
 // Get all tours
 router.get('/tours',verifyToken,tourcontroller.getAllTours);
+//get prioritize tour
+router.get('/edittours', verifyToken, admincontroller.alleditabletours);
+
 router.get("/alltour",verifyToken,admincontroller.alltours);
 router.get("/addtour",verifyToken,admincontroller.addtour);
 
 router.delete('/img/:id',verifyToken,tourcontroller.deletePerImage)
 
 // categorywise
-router.get('/tours/:categoryId',verifyToken,tourcontroller.getCategoryWiseTours);
+router.get('/edittours', verifyToken, admincontroller.alleditabletours);
 // blog details
 router.post('/blog',verifyToken, upload.array('images', 5), tourcontroller.addBlog); // 'images' is the field name in the form
 router.get('/blogs/:id',verifyToken,tourcontroller.geteditblog); 
@@ -58,5 +61,8 @@ router.post('/tickets',verifyToken,upload.array('images',5),tourcontroller.addTi
 router.get('/alltickets',verifyToken,tourcontroller.alltickets)
 router.delete('/tickets/:id',verifyToken, tourcontroller.deletetickets);
 
+// add priority code 
+
+router.put('/update-priority/:tourId', verifyToken, tourcontroller.updatePriority);
 
 module.exports= router

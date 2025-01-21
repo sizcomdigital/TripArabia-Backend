@@ -16,7 +16,7 @@ module.exports = {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 }) // Sort by priority (you can change the sort order if needed)
 
     // Add tours data to category
     return {
@@ -75,7 +75,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -103,7 +103,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -129,7 +129,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -155,7 +155,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -181,7 +181,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -207,7 +207,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -259,6 +259,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
             // Find tours that match the specified category with pagination
             const tours = await Tour.find({ category: id })
                 .populate("category", "name") // Populate the category to include its name
+                .sort({ priority: 1 }) // Sort by priority (you can change the sort order if needed)
                 .skip(skip) // Skip documents for pagination
                 .limit(limit) // Limit the number of documents
                 .exec();
@@ -294,7 +295,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -331,7 +332,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
 // Fetch tours for each category
 const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
 
     // Add tours data to category
     return {
@@ -359,7 +360,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
             // Fetch tours for each category
             const categoryDetailss = await Promise.all(category.map(async (category) => {
                 // Fetch tours associated with the current category
-                const tours = await Tour.find({ category: category._id });
+                const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
             
                 // Add tours data to category
                 return {
@@ -423,7 +424,7 @@ const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours for each category
     const categoryDetailss = await Promise.all(category.map(async (category) => {
     // Fetch tours associated with the current category
-    const tours = await Tour.find({ category: category._id });
+    const tours = await Tour.find({ category: category._id }).sort({ priority: 1 })
     
     // Add tours data to category
     return {

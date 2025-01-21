@@ -34,9 +34,13 @@
       <%-include('../layouts/admin/sideheader.ejs')%>
 
     <main id="main">
+       
     <section class="profile-dashboard">
         <div class="inner-header mb-40">
             <h3 class="title">All Tours</h3>
+            
+           
+
             <form id="searchForm" class="search-dashboard">
                 <input type="search" id="searchInput" placeholder="Search tours" />
             </form>
@@ -64,7 +68,7 @@
                             <div class="content">
                                 <p class="id">ID: #<%= tour.hashedId %></p>
                                 <h6 class="title-booking"><a href="#"><%= tour.tourName %></a></h6>
-                                <p class="price">$<%= tour.actualPrice %></p>
+                                <p class="price">AED <%= tour.actualPrice %></p>
                             </div>
                         </div>
                         <div class="booking-list-table">
@@ -121,7 +125,6 @@
                                 </a>
                             </li>
                         <% } %>
-            
                         <!-- Page Numbers -->
                         <% for (let i = 1; i <= totalPages; i++) { %>
                             <li class="pages-item <%= i === currentPage ? 'active' : '' %>">
