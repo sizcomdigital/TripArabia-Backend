@@ -397,10 +397,7 @@ document.querySelectorAll('.delete-image').forEach(button => {
                 method: "PUT",
                 body: formData,
             });
-
             const data = await response.json();
-        
-        
             if (response.ok) {
                 // Show a success message with SweetAlert
                 Swal.fire({
