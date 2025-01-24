@@ -62,8 +62,8 @@
                                                 <td><%= category.name %></td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <button class="btn btn-warning btn-sm" onclick="editCategory('<%= category._id %>')">
-                                                        Edit
+                                                    <button class="btn btn-warning btn-sm" onclick="editCategory('<%= category._id %>')">Edit</button>
+                                                    
                                                     </button>
                                                     <!-- Delete Button -->
                                                     <button class="btn btn-danger btn-sm" onclick="deleteCategory('<%= category._id %>')">
@@ -192,7 +192,12 @@
         }
     </script>
     
-    
+    <script>
+        function editCategory(categoryId) {
+            // Redirect to the edit category page with the category ID in the URL
+            window.location.href = `/admin/categories/${categoryId}`;
+        }
+    </script>
 
 
 </body>

@@ -15,6 +15,8 @@ router.post('/logout',verifyToken, admincontroller.logout)
 // category details
 router.get("/addcategory",verifyToken,admincontroller.addcategory);
 router.post("/categories",verifyToken,admincontroller.postaddCategory );
+router.get("/categories/:id",verifyToken,admincontroller.geteditCategory );
+
 router.put("/categories/:id",verifyToken,admincontroller.editCategory );
 router.get("/allcategory",verifyToken,admincontroller.allcategory);
 router.delete("/deletecategory/:id",verifyToken,admincontroller.deleteCategory);

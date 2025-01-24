@@ -399,13 +399,14 @@ document.querySelectorAll('.delete-image').forEach(button => {
             });
 
             const data = await response.json();
-        console.log(data,"ggggggggggggggggggg");
+        
         
             if (response.ok) {
                 // Show a success message with SweetAlert
                 Swal.fire({
                     icon: 'success',
                     title: 'Tour Updated',
+                    timer: 1500, // Optional: Auto-close after 1.5 seconds
                     text: data.message || 'The tour details have been updated successfully.',
                     confirmButtonText: 'OK',
                 }).then(() => {

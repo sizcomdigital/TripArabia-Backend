@@ -196,6 +196,22 @@ module.exports = {
           console.error('Error fetching tours:', error);
           res.status(500).send('Error fetching tours');
       }
+    } ,
+    geteditCategory : async (req, res) => {
+      try {
+          const { id } = req.params; // Extract category ID from URL
+          const category = await Category.findById(id); // Fetch the category details
+  
+          if (!category) {
+              return res.status(404).send("Category not found"); // Handle case if category is not found
+          }
+  
+          // Render the 'editcategory' view and pass the category data
+          res.render("admin/editcategory", { category });
+      } catch (error) {
+          console.error(error);
+          res.status(500).send("Internal Server Error"); // Handle any unexpected errors
+      }
   }
 }
     
