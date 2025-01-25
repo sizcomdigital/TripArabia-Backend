@@ -34,8 +34,8 @@ app.use(cookieParser());
 // Routes
 app.use('/admin',adminRouter);
 app.use('/',userRouter);
-
 // app.use('/',userRouter);
+
 app.use((req,res) => {
     try {
         res.status(404).render('404')

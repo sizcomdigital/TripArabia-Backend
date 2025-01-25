@@ -11,7 +11,6 @@ router.get("/",verifyToken,admincontroller.adminhome);
 router.post("/login",admincontroller.adminlogin);
 router.post("/register",admincontroller.register);
 router.post('/logout',verifyToken, admincontroller.logout)
-
 // category details
 router.get("/addcategory",verifyToken,admincontroller.addcategory);
 router.post("/categories",verifyToken,admincontroller.postaddCategory );
